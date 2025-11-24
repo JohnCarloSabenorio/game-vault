@@ -122,3 +122,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .main-header {
+    @apply text-white text-center mt-5 text-3xl font-semibold;
+  }
+}
