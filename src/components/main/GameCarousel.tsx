@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import DotNavigationButton from "@/components/main/DotNavigationButton";
 import {
   Carousel,
@@ -13,11 +13,16 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-export default function GameCarousel() {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
+export default function GameCarousel({
+  newGames,
+}: {
+  newGames: Promise<any[]>;
+}) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const newGamesData = use(newGames);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!api) {
       return;
     }
@@ -54,14 +59,17 @@ export default function GameCarousel() {
       }}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, idx) => {
+        {newGamesData.map((data, idx) => {
           return (
-            <CarouselItem key={idx}>
+            <CarouselItem key={idx} className="group transition-all relative">
               <img
-                className="w-full rounded-md"
-                src={"/images/gamevault-banner.jpeg"}
+                className="w-full aspect-video rounded-md"
+                src={data.artworks[0].url.replace("t_thumb", "t_4k")}
                 alt="Gamevault banner"
               />
+              <div className="flex flex-col justify-center items-center w-full h-full absolute top-0 left-0 bg-gray-800/60 transition-all opacity-0 group-hover:opacity-100">
+                <h1 className="text-center text-white text-5xl">{data.name}</h1>
+              </div>
             </CarouselItem>
           );
         })}

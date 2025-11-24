@@ -3,15 +3,29 @@ import Navbar from "@/components/Navbar";
 import AnticipatedGameContainer from "@/components/main/AnticipatedGameContainer";
 import GameCarousel from "@/components/main/GameCarousel";
 import GameContainer from "@/components/main/GameContainer";
-export default function Home() {
+import { getNewlyReleasedGames } from "@/lib/api/igdb";
+import { Suspense } from "react";
+export default async function Home() {
+  const newGames = getNewlyReleasedGames();
+
   return (
-    <div className="min-h-screen bg-[url('/images/bg.jpeg')] bg-no-repeat bg-cover bg-center">
-      <Navbar />
+    <div className="min-h-screen">
       <main className="">
-        <div className="flex min-h-200 justify-between flex-col md:flex-row">
+        <div className="flex justify-between flex-col md:flex-row mt-3 p-5">
           {/* Carousel (New Releases) */}
-          <div className="flex justify-center items-center flex-1">
-            <GameCarousel />
+          <div className="flex flex-col justify-start flex-1 min-h-100">
+            <h1 className="text-xl font-bold text-white mb-3">
+              Newly Released Games
+            </h1>
+            <Suspense
+              fallback={
+                <div className="h-full flex items-center justify-center">
+                  <p className="text-center text-white text-3xl">Loading...</p>
+                </div>
+              }
+            >
+              <GameCarousel newGames={newGames} />
+            </Suspense>
           </div>
           {/* Top 6 most popular */}
           {/* Card Container */}
@@ -23,7 +37,7 @@ export default function Home() {
         <GameContainer />
         <h1 className="main-header">Top Rated</h1>
         <GameContainer />
-        <h1 className="main-header">Top Most Anticipated</h1>
+        <h1 className="main-header">Coming Soon</h1>
         <GameContainer />
       </main>
     </div>
