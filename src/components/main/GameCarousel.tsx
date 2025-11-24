@@ -69,6 +69,9 @@ export default function GameCarousel({
               />
               <div className="flex flex-col justify-center items-center w-full h-full absolute top-0 left-0 bg-gray-800/60 transition-all opacity-0 group-hover:opacity-100">
                 <h1 className="text-center text-white text-5xl">{data.name}</h1>
+                <button className="p-3 rounded-md text-3xl bg-white mt-3 cursor-pointer">
+                  Learn More
+                </button>
               </div>
             </CarouselItem>
           );
