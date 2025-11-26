@@ -2,6 +2,7 @@
 export async function getNewlyReleasedGames() {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
+      next: { revalidate: 3600 }, // cache 1 hour
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -24,6 +25,7 @@ export async function getNewlyReleasedGames() {
 export async function getMostAnticipatedGames() {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
+      next: { revalidate: 3600 }, // cache 1 hour
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -48,6 +50,7 @@ export async function getPopularGames(popType: number) {
     const response = await fetch(
       "https://api.igdb.com/v4/popularity_primitives",
       {
+        next: { revalidate: 3600 }, // cache 1 hour
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -76,6 +79,7 @@ export async function getPopularGames(popType: number) {
 
 async function fetchGameData(game_id: number) {
   const response = await fetch(`https://api.igdb.com/v4/games/`, {
+    next: { revalidate: 3600 }, // cache 1 hour
     method: "POST",
     headers: {
       Accept: "application/json",

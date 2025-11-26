@@ -1,8 +1,25 @@
 "use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 export default function Navbar() {
+  const [isAtTop, setIsAtTop] = useState(true);
+  function handleScroll() {
+    setIsAtTop(window.pageYOffset == 0);
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="flex w-full justify-between bg-gray-400/60 sticky top-0 p-3 z-50">
+    <div
+      className={`flex w-full justify-between ${
+        isAtTop ? "bg-transparent" : "bg-gray-600/60 backdrop-blur-lg"
+      } transition-all duration-200 sticky top-0 p-3 z-50`}
+    >
       <div className="flex items-center gap-3">
         <Image
           src={"/images/gamevault-logo.png"}
