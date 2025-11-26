@@ -11,7 +11,7 @@ export default function DotNavigationButton({
     <button
       onClick={() => handleClick(target)}
       className={`${
-        current == target && "bg-green-500"
+        current == target && "bg-gray-800"
       } w-3 aspect-square bg-gray-100 rounded-full cursor-pointer`}
     ></button>
   );
