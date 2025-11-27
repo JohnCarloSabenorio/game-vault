@@ -39,7 +39,6 @@ export default function FeaturedGameCarousel({
   }, [api]);
 
   function handleNavClick(target: number) {
-    console.log("clicked");
     if (api) {
       api.scrollTo(target);
     }

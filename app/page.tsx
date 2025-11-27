@@ -20,7 +20,7 @@ export default async function Home() {
     <div className="min-h-screen mt-30">
       <main className="">
         <div className="flex justify-between flex-col lg:flex-row mt-3 p-5">
-          {/* Carousel (New Releases) */}
+          {/* Recent Releases */}
           <div className="flex flex-col justify-start flex-1">
             <Suspense
               fallback={

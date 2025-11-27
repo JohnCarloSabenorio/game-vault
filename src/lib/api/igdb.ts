@@ -36,7 +36,9 @@ export async function getNewlyReleasedGames() {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms; where game_type = 0 & cover != null & artworks != null; sort total_rating_count desc; limit 10;`,
+      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & cover != null & artworks != null & first_release_date > ${Math.round(
+        Date.now() / 1000
+      )}; sort first_release_date desc; limit 5;`,
     });
 
     if (!response.ok) {
