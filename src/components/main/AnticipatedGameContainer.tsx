@@ -1,6 +1,6 @@
 import { use } from "react";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import AnticipatedGameCard from "./AnticipatedGameCard";
+import HorizontalGameCard from "./HorizontalGameCard";
 
 export default function AnticipatedGameContainer({
   gamesData,
@@ -14,7 +14,7 @@ export default function AnticipatedGameContainer({
       <h1 className="text-xl font-bold">Most Anticipated</h1>
 
       {anticipatedGames.map((data, idx) => {
-        return <AnticipatedGameCard key={idx} game={data} />;
+        return <HorizontalGameCard key={idx} game={data} />;
       })}
     </div>
   );

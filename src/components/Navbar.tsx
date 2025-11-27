@@ -1,43 +1,105 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { searchGame } from "@/lib/api/igdb";
+import GameCard from "./main/GameCard";
+import HorizontalGameCard from "./main/HorizontalGameCard";
 export default function Navbar() {
-  const [isAtTop, setIsAtTop] = useState(true);
-  function handleScroll() {
-    setIsAtTop(window.pageYOffset == 0);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [searchedGames, setSearchedGames] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const searchQuery = useDebounce(searchText, 1000);
+
+  function handleInput(e: any) {
+    setSearchText(e.target.value);
+  }
+
+  function handleBlur() {
+    setSearchText("");
+    setIsSearching(false);
+  }
+
+  function handleFocus() {
+    setIsSearching(true);
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    async function searchHandler() {
+      setLoading(true);
+      const games = await searchGame(searchQuery);
+      setSearchedGames(games);
+      setLoading(false);
+    }
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    searchHandler();
+  }, [searchQuery]);
+
   return (
     <div
-      className={`flex w-full justify-between ${
-        isAtTop ? "bg-transparent" : "bg-gray-600/60 backdrop-blur-lg"
-      } transition-all duration-200 sticky top-0 p-3 z-50`}
+      className={`flex flex-col w-full justify-between bg-gray-600 transition-all duration-200 fixed top-0 p-3 z-50`}
     >
-      <div className="flex items-center gap-3">
-        <Image
-          src={"/images/gamevault-logo.png"}
-          width={60}
-          height={60}
-          alt="GameVault Logo"
-        />
+      {/* Navbar Content */}
+      <div className="flex w-full justify-between">
+        <div className="flex items-center gap-3">
+          <Image
+            src={"/images/gamevault-logo.png"}
+            width={60}
+            height={60}
+            alt="GameVault Logo"
+          />
+        </div>
+        <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
+          <input
+            type="text"
+            className="bg-white rounded-md w-full max-w-200 p-3"
+            placeholder="Search for a game..."
+            value={searchText}
+            onInput={(e) => handleInput(e)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
+
+          <button className="bg-gray-500 rounded-md h-full aspect-square hover:bg-gray-800 transition-all">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              className="fill-white w-8 aspect-square mx-auto cursor-pointer"
+            >
+              <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+            </svg>
+          </button>
+        </ul>
       </div>
-      <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
-        <input
-          type="text"
-          className="bg-white rounded-md w-full max-w-200 p-3"
-          placeholder="Search for a game..."
-        />
-        <li className="bg-gray-400/60 px-3 py-2 rounded-full">
-          <a className="text-white font-bold cursor-pointer">Games</a>
-        </li>
-      </ul>
+
+      {/* Search Results */}
+      <div
+        className={`w-full transition-all bg-gray-800 rounded-md text-white ${
+          isSearching ? "p-3" : "h-0 p-0"
+        } mt-3 overflow-hidden`}
+      >
+        <p className="text-center my-3 text-xl font-semibold">
+          {searchQuery.length == 0 ? "Popular Games" : "Search Results"}
+        </p>
+
+        {searchedGames.length != 0 ? (
+          loading ? (
+            <p className="text-center text-gray-200 italic">Loading...</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-3">
+              {searchedGames.map((data, idx) => (
+                <HorizontalGameCard key={idx} game={data} />
+              ))}
+            </div>
+          )
+        ) : (
+          <p className="text-center text-gray-200 italic">
+            No items matched your query.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

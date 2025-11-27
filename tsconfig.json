@@ -22,7 +22,8 @@
     "paths": {
       "@/components/*": ["./components/*"],
       "@/ui/*": ["./ui/*"],
-      "@/lib/*": ["./lib/*"]
+      "@/lib/*": ["./lib/*"],
+      "@/hooks/*": ["./hooks/*"]
     }
   },
   "include": [

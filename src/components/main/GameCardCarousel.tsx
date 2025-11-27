@@ -32,7 +32,7 @@ export default function GameCardCarousel({
           return (
             <CarouselItem
               key={idx}
-              className="group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/3 lg:basis-1/5"
+              className="group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/5 lg:basis-1/6"
             >
               <GameCard gameData={data} />
             </CarouselItem>

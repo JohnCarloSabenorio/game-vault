@@ -1,4 +1,31 @@
 "use server";
+
+export async function searchGame(searchText: string) {
+  try {
+    const response = await fetch("https://api.igdb.com/v4/games", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms; where name ~ \"${searchText}\"* & game_type = 0 & cover != null & artworks != null; sort total_rating_count desc; limit 4;`,
+    });
+
+    if (!response.ok) {
+      console.log("External api error:", response);
+      return [];
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    return [];
+    console.error(err);
+  }
+}
+
 export async function getNewlyReleasedGames() {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
@@ -9,13 +36,13 @@ export async function getNewlyReleasedGames() {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields name,game_type,rating,cover.*,artworks.*,platforms; where game_type = 0 & first_release_date < ${Math.round(
-        Date.now() / 1000
-      )} & cover != null & artworks != null; sort first_release_date desc; limit 3;`,
+      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms; where game_type = 0 & cover != null & artworks != null; sort total_rating_count desc; limit 10;`,
     });
 
+    if (!response.ok) {
+      console.log("External api error:", response);
+    }
     const data = await response.json();
-    console.log("newly released games:", data);
     return data;
   } catch (err) {
     console.error(err);
@@ -68,8 +95,6 @@ export async function getPopularGames(popType: number) {
       json.map((data: { game_id: number }) => fetchGameData(data.game_id))
     );
 
-    console.log("primitive:", popType);
-    console.log("games:", popularGames);
     return popularGames;
   } catch (err) {
     console.error(err);

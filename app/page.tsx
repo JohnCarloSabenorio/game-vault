@@ -17,7 +17,7 @@ export default async function Home() {
   const steamPeakPlayers = getPopularGames(5);
   const steamMostReviewed = getPopularGames(8);
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-30">
       <main className="">
         <div className="flex justify-between flex-col lg:flex-row mt-3 p-5">
           {/* Carousel (New Releases) */}
