@@ -81,7 +81,7 @@ export default function Navbar() {
         } mt-3 overflow-hidden`}
       >
         <p className="text-center my-3 text-xl font-semibold">
-          {searchQuery.length == 0 ? "Popular Games" : "Search Results"}
+          {searchQuery.length == 0 ? "Suggested Games" : "Search Results"}
         </p>
 
         {searchedGames.length != 0 ? (

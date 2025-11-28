@@ -19,6 +19,7 @@ export default function GameCard({ gameData }: { gameData: any }) {
         ratingCount={gameData.total_rating_count}
         ratingAverage={gameData.total_rating / 10}
       />
+      <button className="bg-gray-400 w-full rounded-md p-2 mt-1 font-semibold">Visit</button>
     </div>
   );
 }
