@@ -74,7 +74,7 @@ export async function getMostAnticipatedGames() {
   }
 }
 
-export async function getPopularGames(popType: number) {
+export async function getPopularGames(popType: number = 1, limit: number = 20) {
   try {
     const response = await fetch(
       "https://api.igdb.com/v4/popularity_primitives",
@@ -86,7 +86,7 @@ export async function getPopularGames(popType: number) {
           "Client-ID": process.env.NEXT_CLIENT_ID!,
           Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
         },
-        body: `fields game_id,value,popularity_type,updated_at; sort value desc; limit 18; where popularity_type = ${popType};`,
+        body: `fields game_id,value,popularity_type,updated_at; sort value desc; limit ${limit}; where popularity_type = ${popType};`,
       }
     );
 

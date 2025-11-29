@@ -12,10 +12,10 @@ import { Suspense } from "react";
 export default async function Home() {
   const newGames = getNewlyReleasedGames();
   const anticipatedGames = getMostAnticipatedGames();
-  const igdbMostVisited = getPopularGames(1);
-  const igdbMostPlayed = getPopularGames(4);
-  const steamPeakPlayers = getPopularGames(5);
-  const steamMostReviewed = getPopularGames(8);
+  const topActivePlayers = getPopularGames(3, 20);
+  const igdbMostPlayed = getPopularGames(4, 20);
+  const steamPeakPlayers = getPopularGames(5, 20);
+  const steamMostReviewed = getPopularGames(8, 20);
   return (
     <div className="min-h-screen mt-30">
       <main className="">
@@ -47,8 +47,8 @@ export default async function Home() {
         </div>
 
         {/* Most Popular Video Games */}
-        <GameCarouselHeader header="IGDB Most Visited" link="#" />
-        <GameCardCarousel gamesData={igdbMostVisited} />
+        <GameCarouselHeader header="IGDB Top Active Players" link="#" />
+        <GameCardCarousel gamesData={topActivePlayers} />
 
         <GameCarouselHeader header="IGDB Most Played" link="#" />
         <GameCardCarousel gamesData={igdbMostPlayed} />
