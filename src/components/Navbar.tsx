@@ -6,6 +6,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { searchGame } from "@/lib/api/igdb";
 import GameCard from "./main/GameCard";
 import HorizontalGameCard from "./main/HorizontalGameCard";
+import Link from "next/link";
 export default function Navbar() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -44,12 +45,14 @@ export default function Navbar() {
       {/* Navbar Content */}
       <div className="flex w-full justify-between">
         <div className="flex items-center gap-3">
-          <Image
-            src={"/images/gamevault-logo.png"}
-            width={60}
-            height={60}
-            alt="GameVault Logo"
-          />
+          <Link href={"/"}>
+            <Image
+              src={"/images/gamevault-logo.png"}
+              width={60}
+              height={60}
+              alt="GameVault Logo"
+            />
+          </Link>
         </div>
         <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
           <input

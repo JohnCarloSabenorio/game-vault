@@ -47,16 +47,28 @@ export default async function Home() {
         </div>
 
         {/* Most Popular Video Games */}
-        <GameCarouselHeader header="IGDB Top Active Players" link="#" />
+        <GameCarouselHeader
+          header="IGDB Top Active Players"
+          link="/top-100/most-active"
+        />
         <GameCardCarousel gamesData={topActivePlayers} />
 
-        <GameCarouselHeader header="IGDB Most Played" link="#" />
+        <GameCarouselHeader
+          header="IGDB Most Played"
+          link="/top-100/most-played"
+        />
         <GameCardCarousel gamesData={igdbMostPlayed} />
 
-        <GameCarouselHeader header="Steam 24hrs Peak Players" link="#" />
+        <GameCarouselHeader
+          header="Steam 24hrs Peak Players"
+          link="/top-100/peak-players"
+        />
         <GameCardCarousel gamesData={steamPeakPlayers} />
 
-        <GameCarouselHeader header="Steam Most Reviewed" link="#" />
+        <GameCarouselHeader
+          header="Steam Most Reviewed"
+          link="/top-100/most-reviewed"
+        />
         <GameCardCarousel gamesData={steamMostReviewed} />
       </main>
     </div>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function GameCarouselHeader({
   header,
   link,
@@ -9,9 +10,9 @@ export default function GameCarouselHeader({
     <div className="px-3 flex items-center justify-between">
       <h1 className="main-header">{header}</h1>
 
-      <a href={link}>
+      <Link href={link} prefetch={true}>
         <p className="text-white">View All</p>
-      </a>
+      </Link>
     </div>
   );
 }
