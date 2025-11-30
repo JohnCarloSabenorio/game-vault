@@ -1,4 +1,4 @@
 import { redirect } from "next/navigation";
 export default function Page() {
-  redirect("/top-100/1");
+  redirect("/top-100/most-played");
 }

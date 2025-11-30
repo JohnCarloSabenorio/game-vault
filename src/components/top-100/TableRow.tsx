@@ -9,6 +9,14 @@ export default function TableRow({
   gameData: any;
   topNumber: number;
 }) {
+  function formatDate(release_date: any) {
+    if (!release_date) return "TBA";
+    return new Date(release_date * 1000).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
   return (
     <tr>
       {/* Number */}
@@ -30,21 +38,22 @@ export default function TableRow({
           {gameData.name}
         </h1>
       </td>
+
       {/* Platform */}
       <td className="">
         <div className="flex justify-center gap-2 w-60 flex-wrap mx-auto">
-          <GameTag label={"PC"} />
-          <GameTag label={"PS4"} />
-          <GameTag label={"PS5"} />
+          {(gameData?.platforms || []).map((platform: any, idx: number) => (
+            <GameTag key={idx} label={platform.abbreviation} />
+          ))}
         </div>
       </td>
 
       {/* Genre */}
       <td className="">
         <div className="flex justify-center gap-2 w-60 flex-wrap mx-auto">
-          <GameTag label={"Action"} />
-          <GameTag label={"Platformer"} />
-          <GameTag label={"Horror"} />
+          {(gameData?.genres || []).map((genre: any, idx: number) => (
+            <GameTag key={idx} label={genre.name} />
+          ))}
         </div>
       </td>
       {/* Score */}
@@ -52,7 +61,9 @@ export default function TableRow({
         <GameScore score={10.0} />
       </td>
       {/* Release Date */}
-      <td className="text-center p-3">January 22, 2025</td>
+      <td className="text-center p-3">
+        {formatDate(gameData.first_release_date)}
+      </td>
     </tr>
   );
 }

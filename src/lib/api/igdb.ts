@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 export async function searchGame(searchText: string) {
@@ -29,14 +30,14 @@ export async function searchGame(searchText: string) {
 export async function getNewlyReleasedGames() {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
-      next: { revalidate: 3600 }, // cache 1 hour
+      next: { revalidate: 3600 },
       method: "POST",
       headers: {
         Accept: "application/json",
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & cover != null & artworks != null & first_release_date > ${Math.round(
+      body: `fields name,game_type,rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & first_release_date > ${Math.round(
         Date.now() / 1000
       )}; sort first_release_date desc; limit 5;`,
     });
@@ -63,7 +64,7 @@ export async function getMostAnticipatedGames() {
       },
       body: `fields name,first_release_date,cover.*,artworks.*,platforms,hypes; where game_type = 0 & first_release_date > ${Math.round(
         Date.now() / 1000
-      )} & cover != null & artworks != null; sort hypes desc; limit 5;`,
+      )}; sort hypes desc; limit 5;`,
     });
 
     const data = await response.json();
@@ -94,9 +95,10 @@ export async function getPopularGames(popType: number = 1, limit: number = 20) {
 
     // Fetch full data for each game in parallel
     const popularGames = await Promise.all(
-      json.map((data: { game_id: number }) => fetchGameData(data.game_id))
+      json
+        .filter((d: any) => d.game_id && d.game_id > 0)
+        .map((d: any) => fetchGameData(d.game_id))
     );
-
     return popularGames;
   } catch (err) {
     console.error(err);
@@ -113,7 +115,7 @@ async function fetchGameData(game_id: number) {
       "Client-ID": process.env.NEXT_CLIENT_ID!,
       Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
     },
-    body: `fields name,first_release_date,cover.*,artworks.*,platforms,hypes,rating,total_rating,total_rating_count; where id = ${game_id} & cover != null & artworks != null;`,
+    body: `fields name,first_release_date,cover.*,artworks.*,platforms.*,genres.*,hypes,rating,total_rating,total_rating_count; where id = ${game_id};`,
   });
 
   const data = await response.json();

@@ -10,12 +10,12 @@ import {
 } from "@/lib/api/igdb";
 import { Suspense } from "react";
 export default async function Home() {
-  const newGames = getNewlyReleasedGames();
-  const anticipatedGames = getMostAnticipatedGames();
-  const topActivePlayers = getPopularGames(3, 20);
-  const igdbMostPlayed = getPopularGames(4, 20);
-  const steamPeakPlayers = getPopularGames(5, 20);
-  const steamMostReviewed = getPopularGames(8, 20);
+  const newGames = await getNewlyReleasedGames();
+  const anticipatedGames = await getMostAnticipatedGames();
+  const topActivePlayers = await getPopularGames(3, 20);
+  const igdbMostPlayed = await getPopularGames(4, 20);
+  const steamPeakPlayers = await getPopularGames(5, 20);
+  const steamMostReviewed = await getPopularGames(8, 20);
   return (
     <div className="min-h-screen mt-30">
       <main className="">

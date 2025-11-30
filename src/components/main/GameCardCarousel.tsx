@@ -13,12 +13,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function GameCardCarousel({
-  gamesData,
-}: {
-  gamesData: Promise<any[]>;
-}) {
-  const games = use(gamesData);
+export default function GameCardCarousel({ gamesData }: { gamesData: any[] }) {
+  const games = gamesData;
 
   return (
     <Carousel

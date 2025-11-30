@@ -16,11 +16,11 @@ import Autoplay from "embla-carousel-autoplay";
 export default function FeaturedGameCarousel({
   newGames,
 }: {
-  newGames: Promise<any[]>;
+  newGames: any[];
 }) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const newGamesData = use(newGames);
+  const newGamesData = newGames;
 
   useEffect(() => {
     if (!api) {

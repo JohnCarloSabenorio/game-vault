@@ -36,10 +36,12 @@ export default async function Page({
 
   return (
     <div className="flex flex-col min-h-screen text-white pt-30">
-      <h1 className="mb-3 text-3xl font-bold text-center">Top 100 {catIdxAndTitle[1]}</h1>
+      <h1 className="mb-3 text-3xl font-bold text-center">
+        Top 100 {catIdxAndTitle[1]}
+      </h1>
       {/* Table */}
       <div className="w-full mx-auto max-w-7xl rounded-md overflow-hidden">
-        <table className="fill-white w-full border-white rounded-md border-collapse">
+        <table className="w-full border-collapse">
           <TableHeaders />
           <TableBody topGames={topGames} />
         </table>
