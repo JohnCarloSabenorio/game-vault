@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import AnticipatedGameContainer from "@/components/main/AnticipatedGameContainer";
-import FeaturedGameCarousel from "@/components/main/FeaturedGameCarousel";
+import FeaturedGamesCarousel from "@/components/main/FeaturedGamesCarousel";
 import GameCardCarousel from "@/components/main/GameCardCarousel";
 import GameCarouselHeader from "@/components/main/GameCarouselHeader";
 import {
@@ -17,24 +17,10 @@ export default async function Home() {
   const steamPeakPlayers = await getPopularGames(5, 20);
   const steamMostReviewed = await getPopularGames(8, 20);
   return (
-    <div className="min-h-screen mt-30">
-      <main className="">
-        <div className="flex justify-between flex-col lg:flex-row mt-3 p-5">
-          {/* Recent Releases */}
-          <div className="flex flex-col justify-start flex-1">
-            <Suspense
-              fallback={
-                <div className="h-full flex items-center justify-center">
-                  <p className="text-center text-white text-3xl">Loading...</p>
-                </div>
-              }
-            >
-              <FeaturedGameCarousel newGames={newGames} />
-            </Suspense>
-          </div>
-          {/* Top 6 most popular */}
-          {/* Card Container */}
-
+    <main className="mt-5">
+      <div className="flex justify-between flex-col lg:flex-row px-5">
+        {/* Recent Releases */}
+        <div className="flex flex-col justify-start flex-1">
           <Suspense
             fallback={
               <div className="h-full flex items-center justify-center">
@@ -42,11 +28,26 @@ export default async function Home() {
               </div>
             }
           >
-            <AnticipatedGameContainer gamesData={anticipatedGames} />
+            <FeaturedGamesCarousel newGames={newGames} />
           </Suspense>
         </div>
+        {/* Top 6 most popular */}
+        {/* Card Container */}
+      </div>
 
-        {/* Most Popular Video Games */}
+      <Suspense
+        fallback={
+          <div className="h-full flex items-center justify-center">
+            <p className="text-center text-white text-3xl">Loading...</p>
+          </div>
+        }
+      >
+        <AnticipatedGameContainer gamesData={anticipatedGames} />
+      </Suspense>
+
+      {/* Most Popular Video Games */}
+
+      <div className="mt-5">
         <GameCarouselHeader
           header="IGDB Top Active Players"
           link="/top-100/most-active"
@@ -70,7 +71,7 @@ export default async function Home() {
           link="/top-100/most-reviewed"
         />
         <GameCardCarousel gamesData={steamMostReviewed} />
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

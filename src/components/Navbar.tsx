@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`flex flex-col w-full justify-between bg-gray-600 fixed top-0 p-3 z-50`}
+      className={`flex flex-col w-full justify-between bg-gray-600 fixed top-0 p-1 z-50`}
     >
       {/* Navbar Content */}
       <div className="flex w-full justify-between">
@@ -81,7 +81,7 @@ export default function Navbar() {
       <div
         className={`w-full transition-all duration-300 bg-gray-800 rounded-md text-white ${
           isSearching ? "max-h-100 p-3" : "max-h-0 p-0"
-        } mt-3 overflow-hidden`}
+        } overflow-hidden`}
       >
         <p className="text-center my-3 text-xl font-semibold">
           {searchQuery.length == 0 ? "Suggested Games" : "Search Results"}

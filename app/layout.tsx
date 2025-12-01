@@ -33,10 +33,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
         <Navbar />
-        {children}
+        <div className="min-h-screen mt-16">{children}</div>
         <Footer />
       </body>
     </html>
