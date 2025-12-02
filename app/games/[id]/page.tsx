@@ -4,8 +4,8 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import RatingContainer from "@/components/games/RatingContainer";
-import { Carousel } from "@/components/ui/carousel";
+import GameStatsContainer from "@/components/games/GameStatsContainer";
+import { Carousel, CarouselContent } from "@/components/ui/carousel";
 export default function Page() {
   return (
     <main className="text-white min-h-screen bg-gray-800">
@@ -26,13 +26,16 @@ export default function Page() {
             className="rounded-md"
             alt="Game Cover"
           />
-          <div>{/* Carousel */}</div>
+          <Carousel>
+            <CarouselContent>
+              <img src={"/images/placeholder.png"} alt="Image" />
+            </CarouselContent>
+          </Carousel>
         </div>
 
-        <div className="flex">
+        <div className="flex md:flex-col lg:flex-row gap-3">
           <div>
-            <p className="mt-3">Franchise</p>
-            <RatingContainer />
+            <GameStatsContainer />
 
             <h1 className="mt-3">Developers:</h1>
             <h1 className="mt-3">Publishers:</h1>
@@ -57,9 +60,62 @@ export default function Page() {
           </div>
           <div>
             {/* Age Ratings */}
-            <div></div>
+            <h1 className="mt-3">Age Ratings</h1>
+            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+              <Image
+                src={"/images/cover-placeholder.jpg"}
+                width={100}
+                height={60}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+              <Image
+                src={"/images/cover-placeholder.jpg"}
+                width={100}
+                height={60}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+              <Image
+                src={"/images/cover-placeholder.jpg"}
+                width={100}
+                height={60}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+            </div>
             {/* Links */}
-            <div></div>
+            <h1 className="mt-3">Links</h1>
+            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+              <Image
+                src={"/images/gamevault-logo.png"}
+                width={50}
+                height={50}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+              <Image
+                src={"/images/gamevault-logo.png"}
+                width={50}
+                height={50}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+              <Image
+                src={"/images/gamevault-logo.png"}
+                width={50}
+                height={50}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+              <Image
+                src={"/images/gamevault-logo.png"}
+                width={50}
+                height={50}
+                className="rounded-md"
+                alt="Age Rating Image"
+              />
+            </div>
             {/* Supported Languages */}
             <div></div>
             {/* Game Engines */}
