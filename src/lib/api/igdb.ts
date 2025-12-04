@@ -27,6 +27,28 @@ export async function searchGame(searchText: string) {
   }
 }
 
+export async function getGameById(id: number) {
+  try {
+    const response = await fetch("https://api.igdb.com/v4/games", {
+      next: { revalidate: 3600 },
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body: `fields id,name,game_type,rating,total_rating_count,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
+    });
+
+    if (!response.ok) {
+      console.log("External api error:", response);
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}
 export async function getNewlyReleasedGames() {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
