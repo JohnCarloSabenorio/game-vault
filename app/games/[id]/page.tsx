@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import GameStatsContainer from "@/components/games/GameStatsContainer";
 import { Carousel, CarouselContent } from "@/components/ui/carousel";
 import { getGameById } from "@/lib/api/igdb";
 import { notFound } from "next/navigation";
+import GameBackground from "@/components/games/GameBackground";
+import GameTag from "@/components/top-100/GameTag";
 export default async function Page({
   params,
 }: {
@@ -18,23 +21,15 @@ export default async function Page({
   console.log("game data:", gameData);
   return (
     <main className="text-white min-h-screen bg-gray-800">
-      <div
-        className={`w-full absolute min-h-[800px] bg-cover z-0`}
-        style={{
-          backgroundImage: `url('${
-            gameData?.artworks
-              ? gameData.artworks[0].url.replace("t_thumb", "t_4k")
-              : gameData?.screenshots
-              ? `https:${gameData.screenshots[0].url.replace(
-                  "t_thumb",
-                  "t_4k"
-                )}`
-              : "/images/placeholder.png"
-          }')`,
-        }}
-      >
-        <div className="w-full h-full bg-black/60 absolute"></div>
-      </div>
+      <GameBackground
+        bgUrl={
+          gameData?.artworks
+            ? gameData.artworks[0].url.replace("t_thumb", "t_4k")
+            : gameData?.screenshots
+            ? `https:${gameData.screenshots[0].url.replace("t_thumb", "t_4k")}`
+            : "/images/placeholder.png"
+        }
+      />
 
       {/* Main Content */}
       <div className="relative text-white max-w-6xl mx-auto p-3 z-10">
@@ -67,7 +62,14 @@ export default async function Page({
 
         <div className="flex flex-col lg:flex-row gap-3">
           <div>
-            <GameStatsContainer />
+            <GameStatsContainer
+              total_rating={(gameData.total_rating / 10).toFixed(1)}
+              total_rating_count={gameData?.total_rating_count ?? 0}
+              igdb_rating={(gameData.rating / 10).toFixed(1)}
+              igdb_rating_count={gameData?.rating_count ?? 0}
+              critic_rating={(gameData.aggregated_rating / 10).toFixed(1)}
+              critic_rating_count={gameData?.aggregated_rating_count ?? 0}
+            />
 
             <div className="grid grid-cols-2 gap-3 mt-3">
               <div className="bg-gray-500 flex-1 rounded-md p-3">
@@ -78,15 +80,40 @@ export default async function Page({
               </div>
               <div className="bg-gray-500 flex-1 rounded-md p-3">
                 <h1 className="">Genres:</h1>
+
+                <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
+                  {(gameData?.genres || []).map((genre: any, idx: number) => (
+                    <GameTag key={idx} label={genre.name} />
+                  ))}
+                </div>
               </div>
               <div className="bg-gray-500 flex-1 rounded-md p-3">
                 <h1 className="">Themes:</h1>
+                <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
+                  {(gameData?.themes || []).map((theme: any, idx: number) => (
+                    <GameTag key={idx} label={theme.name} />
+                  ))}
+                </div>
               </div>
               <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Multiplayer Modes:</h1>
+                <h1 className="">Game Modes:</h1>
+                {gameData.game_modes ? (
+                  gameData.game_modes.map((data: any, idx: number) => {
+                    return <GameTag key={idx} label={data.name} />;
+                  })
+                ) : (
+                  <p className="font-bold">N/A</p>
+                )}
               </div>
               <div className="bg-gray-500 flex-1 rounded-md p-3">
                 <h1 className="">Player Perspectives:</h1>
+                {gameData.player_perspectives ? (
+                  gameData.player_perspectives.map((data: any, idx: number) => {
+                    return <GameTag key={idx} label={data.name} />;
+                  })
+                ) : (
+                  <p className="font-bold">N/A</p>
+                )}
               </div>
             </div>
 

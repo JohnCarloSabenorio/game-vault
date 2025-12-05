@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Image from "next/image";
-import GameTag from "./GameTag";
-import GameScore from "./GameScore";
+
 import TableRow from "./TableRow";
 import { use } from "react";
 export default function TableBody({ topGames }: { topGames: Promise<any> }) {
