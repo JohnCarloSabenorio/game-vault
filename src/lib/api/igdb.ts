@@ -37,7 +37,7 @@ export async function getGameById(id: number) {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields id,websites.*,name,game_type,rating,hypes,game_status,involved_companies.*,age_ratings.*,aggregated_rating,rating,genres.*,themes.*,game_modes.*,multiplayer_modes.*,player_perspectives.*,rating_count,aggregated_rating_count,total_rating,total_rating_count,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
+      body: `fields id,websites.*,summary,videos.*,name,game_type,rating,hypes,game_status,involved_companies.*,age_ratings.*,aggregated_rating,rating,genres.*,themes.*,game_modes.*,multiplayer_modes.*,player_perspectives.*,rating_count,aggregated_rating_count,total_rating,total_rating_count,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
     });
 
     if (!response.ok) {

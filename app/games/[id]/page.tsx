@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import GameStatsContainer from "@/components/games/GameStatsContainer";
@@ -6,6 +7,8 @@ import { getGameById } from "@/lib/api/igdb";
 import { notFound } from "next/navigation";
 import GameBackground from "@/components/games/GameBackground";
 import GameTag from "@/components/top-100/GameTag";
+import GameDetailsContainer from "@/components/games/GameDetailsContainer";
+import MediaCarousel from "@/components/games/MediaCarousel";
 export default async function Page({
   params,
 }: {
@@ -34,6 +37,7 @@ export default async function Page({
       {/* Main Content */}
       <div className="relative text-white max-w-6xl mx-auto p-3 z-10">
         <h1 className="text-3xl font-bold">{gameData.name}</h1>
+
         <div className="flex flex-col gap-3 md:flex-row mt-5">
           <img
             src={
@@ -41,23 +45,13 @@ export default async function Page({
                 ? `https:${gameData.cover.url.replace("t_thumb", "t_4k")}`
                 : "/images/placeholder.jpg"
             }
-            className="max-w-90 rounded-md mx-auto"
+            className="w-90 rounded-md mx-auto"
             alt="Game Cover"
           />
 
-          <Carousel>
-            <CarouselContent>
-              <img src={"/images/placeholder.png"} alt="Image" />
-            </CarouselContent>
+          {/* ScreenshotsCarousel */}
 
-            <div className="mt-3 bg-gray-800 w-full p-1 rounded-md overflow-x-scroll">
-              <img
-                className="w-20 rounded-md border-3 border-black"
-                src={"/images/placeholder.png"}
-                alt="Image"
-              />
-            </div>
-          </Carousel>
+          <MediaCarousel screenshots={gameData.screenshots} trailer={""} />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-3">
@@ -71,65 +65,17 @@ export default async function Page({
               critic_rating_count={gameData?.aggregated_rating_count ?? 0}
             />
 
-            <div className="grid grid-cols-2 gap-3 mt-3">
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Developers:</h1>
-              </div>
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Publishers:</h1>
-              </div>
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Genres:</h1>
-
-                <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-                  {(gameData?.genres || []).map((genre: any, idx: number) => (
-                    <GameTag key={idx} label={genre.name} />
-                  ))}
-                </div>
-              </div>
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Themes:</h1>
-                <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-                  {(gameData?.themes || []).map((theme: any, idx: number) => (
-                    <GameTag key={idx} label={theme.name} />
-                  ))}
-                </div>
-              </div>
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Game Modes:</h1>
-                {gameData.game_modes ? (
-                  gameData.game_modes.map((data: any, idx: number) => {
-                    return <GameTag key={idx} label={data.name} />;
-                  })
-                ) : (
-                  <p className="font-bold">N/A</p>
-                )}
-              </div>
-              <div className="bg-gray-500 flex-1 rounded-md p-3">
-                <h1 className="">Player Perspectives:</h1>
-                {gameData.player_perspectives ? (
-                  gameData.player_perspectives.map((data: any, idx: number) => {
-                    return <GameTag key={idx} label={data.name} />;
-                  })
-                ) : (
-                  <p className="font-bold">N/A</p>
-                )}
-              </div>
-            </div>
+            <GameDetailsContainer
+              genres={gameData?.genres}
+              themes={gameData?.themes}
+              game_modes={gameData?.game_modes}
+              player_perspectives={gameData?.player_perspectives}
+            />
 
             <h2 className="mt-3 text-xl font-semibold">Summary</h2>
             <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <p className="mt-3 text-justify">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry{"'"}s standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+              <p className="text-justify">
+                {gameData?.summary ?? "No summary is available for this game."}
               </p>
             </div>
 
