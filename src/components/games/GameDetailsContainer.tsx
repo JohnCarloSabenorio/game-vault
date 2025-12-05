@@ -2,23 +2,38 @@
 import GameTag from "../top-100/GameTag";
 
 export default function GameDetailsContainer({
+  developers,
+  publishers,
   genres,
   themes,
   game_modes,
   player_perspectives,
 }: {
+  developers: any;
+  publishers: any;
   genres: any;
   themes: any;
   game_modes: any;
   player_perspectives: any;
 }) {
+  console.log("the devs:", developers);
   return (
     <div className="grid grid-cols-2 gap-3 mt-3">
       <div className="bg-gray-500 flex-1 rounded-md p-3">
         <h1 className="">Developers:</h1>
+        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
+          {(developers || []).map((dev: any, idx: number) => (
+            <GameTag key={idx} label={dev.company.name} />
+          ))}
+        </div>
       </div>
       <div className="bg-gray-500 flex-1 rounded-md p-3">
         <h1 className="">Publishers:</h1>
+        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
+          {(publishers || []).map((pub: any, idx: number) => (
+            <GameTag key={idx} label={pub.company.name} />
+          ))}
+        </div>
       </div>
       <div className="bg-gray-500 flex-1 rounded-md p-3">
         <h1 className="">Genres:</h1>

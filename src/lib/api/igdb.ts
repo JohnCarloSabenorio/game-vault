@@ -29,6 +29,14 @@ export async function searchGame(searchText: string) {
 
 export async function getGameById(id: number) {
   try {
+    const language_support_field =
+      "language_supports.language.*,language_supports.language_support_type.*";
+    const involved_companies_field =
+      "involved_companies.company.*, involved_companies.publisher, involved_companies.developer";
+
+    const ratings_field =
+      "rating,hypes,aggregated_rating,rating,rating_count,aggregated_rating_count,total_rating,total_rating_count";
+
     const response = await fetch("https://api.igdb.com/v4/games", {
       next: { revalidate: 3600 },
       method: "POST",
@@ -37,7 +45,7 @@ export async function getGameById(id: number) {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields id,websites.*,summary,videos.*,name,game_type,rating,hypes,game_status,involved_companies.*,age_ratings.*,aggregated_rating,rating,genres.*,themes.*,game_modes.*,multiplayer_modes.*,player_perspectives.*,rating_count,aggregated_rating_count,total_rating,total_rating_count,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
+      body: `fields id,websites.*,summary,videos.*,name,${language_support_field},game_type,game_status,${involved_companies_field},${ratings_field},age_ratings.*,genres.*,themes.*,game_modes.*,multiplayer_modes.*,player_perspectives.*,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
     });
 
     if (!response.ok) {
@@ -45,7 +53,7 @@ export async function getGameById(id: number) {
     }
     const data = await response.json();
 
-    return data;
+    return { ...data[0] };
   } catch (err) {
     console.error(err);
   }
@@ -139,6 +147,23 @@ async function fetchGameData(game_id: number) {
       Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
     },
     body: `fields name,first_release_date,cover.*,artworks.*,platforms.*,genres.*,hypes,rating,total_rating,total_rating_count; where id = ${game_id};`,
+  });
+
+  const data = await response.json();
+
+  return data[0];
+}
+
+async function fetchCompanyData(company_id: number) {
+  const response = await fetch(`https://api.igdb.com/v4/companies/`, {
+    next: { revalidate: 3600 }, // cache 1 hour
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Client-ID": process.env.NEXT_CLIENT_ID!,
+      Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+    },
+    body: `fields name; where id = ${company_id};`,
   });
 
   const data = await response.json();
