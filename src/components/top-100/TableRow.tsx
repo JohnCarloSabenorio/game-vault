@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import formatDate from "@/lib/utils/formatDate";
 import GameScore from "./GameScore";
 import GameTag from "./GameTag";
 import Image from "next/image";
@@ -9,14 +10,6 @@ export default function TableRow({
   gameData: any;
   topNumber: number;
 }) {
-  function formatDate(release_date: any) {
-    if (!release_date) return "TBA";
-    return new Date(release_date * 1000).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
   return (
     <tr>
       {/* Number */}

@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { UUID } from "crypto";
+
 export async function searchGame(searchText: string) {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
@@ -37,6 +39,8 @@ export async function getGameById(id: number) {
     const ratings_field =
       "rating,hypes,aggregated_rating,rating,rating_count,aggregated_rating_count,total_rating,total_rating_count";
 
+    const age_rating_field = `age_ratings.*, age_ratings.rating_category.*, age_ratings.rating_content_descriptions.*`;
+
     const response = await fetch("https://api.igdb.com/v4/games", {
       next: { revalidate: 3600 },
       method: "POST",
@@ -45,7 +49,7 @@ export async function getGameById(id: number) {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields id,websites.*,summary,videos.*,name,${language_support_field},game_type,game_status,${involved_companies_field},${ratings_field},age_ratings.*,genres.*,themes.*,game_modes.*,multiplayer_modes.*,player_perspectives.*,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
+      body: `fields id,game_localizations,updated_at,websites.*,summary,videos.*,name,${language_support_field},game_engines.*,game_type,game_status,${involved_companies_field},${ratings_field},${age_rating_field},genres.*,themes.*,game_modes.*,parent_game.*,multiplayer_modes.*,player_perspectives.*,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
     });
 
     if (!response.ok) {

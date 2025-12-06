@@ -36,8 +36,6 @@ export default function SupportedLanguages({
     }
   }
 
-  console.log("language supports:", languages);
-
   return (
     <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
       <h1 className="mt-3">Supported Languages</h1>

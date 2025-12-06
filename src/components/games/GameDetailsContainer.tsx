@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import GameTag from "../top-100/GameTag";
+import GameDetailCard from "./GameDetailCard";
 
 export default function GameDetailsContainer({
   developers,
@@ -8,6 +9,8 @@ export default function GameDetailsContainer({
   themes,
   game_modes,
   player_perspectives,
+  game_engines,
+  platforms,
 }: {
   developers: any;
   publishers: any;
@@ -15,61 +18,40 @@ export default function GameDetailsContainer({
   themes: any;
   game_modes: any;
   player_perspectives: any;
+  game_engines: any;
+  platforms: any;
 }) {
-  console.log("the devs:", developers);
+  const developersData = developers.map((dev: any) => dev.company);
+  const publishersData = publishers.map((dev: any) => dev.company);
   return (
     <div className="grid grid-cols-2 gap-3 mt-3">
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Developers:</h1>
-        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-          {(developers || []).map((dev: any, idx: number) => (
-            <GameTag key={idx} label={dev.company.name} />
-          ))}
+      <div className="flex flex-col gap-3">
+        <GameDetailCard header="Developers:" data={developersData} />
+        <GameDetailCard header="Publishers:" data={publishersData} />
+        <GameDetailCard header="Genres:" data={genres} />
+        <GameDetailCard header="Themes:" data={themes} />
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <GameDetailCard header="Game Modes:" data={game_modes} />
+        <GameDetailCard
+          header="Player Perspectives:"
+          data={player_perspectives}
+        />
+        <GameDetailCard header="Game Engines:" data={game_engines} />
+
+        <div className="bg-gray-500 flex-1 rounded-md p-3">
+          <h1 className="">Platforms:</h1>
+          <div className="flex flex-wrap gap-1">
+            {platforms ? (
+              platforms.map((data: any, idx: number) => {
+                return <GameTag key={idx} label={data.abbreviation} />;
+              })
+            ) : (
+              <p className="font-bold">N/A</p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Publishers:</h1>
-        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-          {(publishers || []).map((pub: any, idx: number) => (
-            <GameTag key={idx} label={pub.company.name} />
-          ))}
-        </div>
-      </div>
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Genres:</h1>
-        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-          {(genres || []).map((genre: any, idx: number) => (
-            <GameTag key={idx} label={genre.name} />
-          ))}
-        </div>
-      </div>
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Themes:</h1>
-        <div className="flex gap-2 w-full flex-wrap mx-auto mt-3">
-          {(themes || []).map((theme: any, idx: number) => (
-            <GameTag key={idx} label={theme.name} />
-          ))}
-        </div>
-      </div>
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Game Modes:</h1>
-        {game_modes ? (
-          game_modes.map((data: any, idx: number) => {
-            return <GameTag key={idx} label={data.name} />;
-          })
-        ) : (
-          <p className="font-bold">N/A</p>
-        )}
-      </div>
-      <div className="bg-gray-500 flex-1 rounded-md p-3">
-        <h1 className="">Player Perspectives:</h1>
-        {player_perspectives ? (
-          player_perspectives.map((data: any, idx: number) => {
-            return <GameTag key={idx} label={data.name} />;
-          })
-        ) : (
-          <p className="font-bold">N/A</p>
-        )}
       </div>
     </div>
   );
