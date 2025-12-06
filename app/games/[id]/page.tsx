@@ -11,7 +11,7 @@ import GameDetailsContainer from "@/components/games/GameDetailsContainer";
 import MediaCarousel from "@/components/games/MediaCarousel";
 import SupportedLanguages from "@/components/games/SupportedLanguages";
 import formatDate from "@/lib/utils/formatDate";
-import DateUpdatedCard from "@/components/games/DateUpdatedCard";
+import DateCard from "@/components/games/DateCard";
 import ExternalLinksCard from "@/components/games/ExternalLinksCard";
 export default async function Page({
   params,
@@ -108,18 +108,16 @@ export default async function Page({
           </div>
 
           <div>
-            <DateUpdatedCard
+            <DateCard
               label="Date Released"
               date={formatDate(game.first_release_date)}
             />
-
-            {/* Supported Languages */}
-            <SupportedLanguages languageSupports={game.language_supports} />
-
-            <DateUpdatedCard
+            <DateCard
               label="Date Updated"
               date={formatDate(game.updated_at)}
             />
+            {/* Supported Languages */}
+            <SupportedLanguages languageSupports={game.language_supports} />
 
             <ExternalLinksCard websites={game?.websites} />
             <h1 className="mt-3">Parent Game:</h1>

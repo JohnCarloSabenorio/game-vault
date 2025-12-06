@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export default function DateUpdatedCard({
+export default function DateCard({
   date,
   label,
 }: {
