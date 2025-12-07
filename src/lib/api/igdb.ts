@@ -49,7 +49,7 @@ export async function getGameById(id: number) {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields id,game_localizations,updated_at,websites.*,summary,videos.*,name,${language_support_field},game_engines.*,game_type,game_status,${involved_companies_field},${ratings_field},${age_rating_field},genres.*,themes.*,game_modes.*,parent_game.*,multiplayer_modes.*,player_perspectives.*,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
+      body: `fields id,game_localizations,similar_games.*,storyline,similar_games.cover.*,dlcs.*, dlcs.cover.*,updated_at,websites.*,summary,videos.*,name,${language_support_field},game_engines.*,game_type,game_status,${involved_companies_field},${ratings_field},${age_rating_field},genres.*,themes.*,game_modes.*,parent_game.*,multiplayer_modes.*,player_perspectives.*,cover.*,artworks.*,screenshots.*,platforms.*,first_release_date; where id = ${id};`,
     });
 
     if (!response.ok) {
@@ -99,7 +99,7 @@ export async function getMostAnticipatedGames() {
       },
       body: `fields name,first_release_date,cover.*,artworks.*,platforms,hypes; where game_type = 0 & first_release_date > ${Math.round(
         Date.now() / 1000
-      )}; sort hypes desc; limit 5;`,
+      )}; sort hypes desc; limit 6;`,
     });
 
     const data = await response.json();

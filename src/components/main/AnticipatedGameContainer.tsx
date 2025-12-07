@@ -9,11 +9,13 @@ export default function AnticipatedGameContainer({
 }) {
   return (
     <div className="flex flex-col justify-start gap-3 px-3 text-white">
-      <h1 className="text-xl font-bold">Most Anticipated</h1>
+      <h1 className="main-header ">Most Anticipated</h1>
 
-      {gamesData.map((data, idx) => {
-        return <HorizontalGameCard key={idx} game={data} />;
-      })}
+      <div className="gap-3 grid  grid-cols-1 md:grid-cols-2">
+        {gamesData.map((data, idx) => {
+          return <HorizontalGameCard key={idx} game={data} />;
+        })}
+      </div>
     </div>
   );
 }

@@ -52,25 +52,25 @@ export default async function Home() {
           header="IGDB Top Active Players"
           link="/top-100/most-active"
         />
-        <GameCardCarousel gamesData={topActivePlayers} />
+        <GameCardCarousel lg_basis="basis:1/6" gamesData={topActivePlayers} />
 
         <GameCarouselHeader
           header="IGDB Most Played"
           link="/top-100/most-played"
         />
-        <GameCardCarousel gamesData={igdbMostPlayed} />
+        <GameCardCarousel lg_basis="basis:1/6" gamesData={igdbMostPlayed} />
 
         <GameCarouselHeader
           header="Steam 24hrs Peak Players"
           link="/top-100/peak-players"
         />
-        <GameCardCarousel gamesData={steamPeakPlayers} />
+        <GameCardCarousel lg_basis="basis:1/6" gamesData={steamPeakPlayers} />
 
         <GameCarouselHeader
           header="Steam Most Reviewed"
           link="/top-100/most-reviewed"
         />
-        <GameCardCarousel gamesData={steamMostReviewed} />
+        <GameCardCarousel lg_basis="basis:1/6" gamesData={steamMostReviewed} />
       </div>
     </main>
   );

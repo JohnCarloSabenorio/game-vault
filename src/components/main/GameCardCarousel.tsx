@@ -13,7 +13,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function GameCardCarousel({ gamesData }: { gamesData: any[] }) {
+export default function GameCardCarousel({
+  gamesData,
+  lg_basis = "lg:basis-1/6",
+}: {
+  gamesData: any[];
+  lg_basis: string;
+}) {
   const games = gamesData;
 
   return (
@@ -28,7 +34,7 @@ export default function GameCardCarousel({ gamesData }: { gamesData: any[] }) {
           return (
             <CarouselItem
               key={idx}
-              className="group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/5 lg:basis-1/6"
+              className={`group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/5 ${lg_basis}`}
             >
               <GameCard gameData={data} />
             </CarouselItem>

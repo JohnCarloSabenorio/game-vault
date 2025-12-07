@@ -13,6 +13,8 @@ import SupportedLanguages from "@/components/games/SupportedLanguages";
 import formatDate from "@/lib/utils/formatDate";
 import DateCard from "@/components/games/DateCard";
 import ExternalLinksCard from "@/components/games/ExternalLinksCard";
+import GameCardCarousel from "@/components/main/GameCardCarousel";
+import GameCard from "@/components/main/GameCard";
 export default async function Page({
   params,
 }: {
@@ -21,7 +23,6 @@ export default async function Page({
   const { id } = await params;
   const game = await getGameById(id);
 
-  console.log("the game:", game);
   if (!game) {
     notFound();
   }
@@ -98,13 +99,12 @@ export default async function Page({
               </p>
             </div>
 
-            {/* Events Featured In */}
-
-            {/* Similar Games */}
-            <h2 className="mt-3 text-xl font-semibold">DLCs</h2>
-            <h2 className="mt-3 text-xl font-semibold">Expansions</h2>
-            <h2 className="mt-3 text-xl font-semibold">Events Featured In</h2>
-            <h2 className="mt-3 text-xl font-semibold">Similar Games</h2>
+            <h2 className="mt-3 text-xl font-semibold">Story</h2>
+            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+              <p className="text-justify">
+                {game?.storyline ?? "No story is available for this game."}
+              </p>
+            </div>
           </div>
 
           <div>
@@ -112,20 +112,32 @@ export default async function Page({
               label="Date Released"
               date={formatDate(game.first_release_date)}
             />
-            <DateCard
-              label="Date Updated"
-              date={formatDate(game.updated_at)}
-            />
+            <DateCard label="Date Updated" date={formatDate(game.updated_at)} />
             {/* Supported Languages */}
             <SupportedLanguages languageSupports={game.language_supports} />
 
-            <ExternalLinksCard websites={game?.websites} />
+            {/* <ExternalLinksCard websites={game?.websites} /> */}
             <h1 className="mt-3">Parent Game:</h1>
             <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
               <a>{game.parent_game ? game.parent_game.name : "N/A"}</a>
             </div>
           </div>
         </div>
+        {/* DLCs */}
+        <h2 className="mt-3 text-xl font-semibold">DLCs</h2>
+
+        {game.dlcs ? (
+          <GameCardCarousel lg_basis="lg:basis-1/4" gamesData={game.dlcs} />
+        ) : (
+          <p className="italic mt-3">No DLC Available</p>
+        )}
+
+        {/* Similar Games */}
+        <h2 className="mt-3 text-xl font-semibold">Similar Games</h2>
+        <GameCardCarousel
+          lg_basis="lg:basis-1/4"
+          gamesData={game.similar_games}
+        />
       </div>
     </main>
   );

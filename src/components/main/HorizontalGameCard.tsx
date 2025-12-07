@@ -17,7 +17,7 @@ export default function HorizontalGameCard({ game }: { game: any }) {
   }, [game.first_release_date]);
 
   return (
-    <div className="bg-gray-600/60 rounded-md p-3 flex items-center gap-5">
+    <div className="flex-1 bg-gray-600/60 rounded-md p-3 flex items-center gap-5">
       <Image
         width={300}
         height={300}
