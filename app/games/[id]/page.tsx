@@ -15,6 +15,7 @@ import DateCard from "@/components/games/DateCard";
 import ExternalLinksCard from "@/components/games/ExternalLinksCard";
 import GameCardCarousel from "@/components/main/GameCardCarousel";
 import GameCard from "@/components/main/GameCard";
+import GameDescriptionCard from "@/components/games/GameDescriptionCard";
 export default async function Page({
   params,
 }: {
@@ -26,6 +27,11 @@ export default async function Page({
   if (!game) {
     notFound();
   }
+
+  const trailers = game.videos.filter(
+    (video: any) => video.name.toLowerCase() == "trailer"
+  );
+
   return (
     <main className="text-white min-h-screen bg-gray-800">
       <GameBackground
@@ -55,7 +61,7 @@ export default async function Page({
 
           {/* ScreenshotsCarousel */}
 
-          <MediaCarousel screenshots={game.screenshots} trailer={""} />
+          <MediaCarousel screenshots={game.screenshots} trailers={trailers} />
         </div>
 
         <div className="flex flex-col lg:flex-row gap-3">
@@ -92,19 +98,11 @@ export default async function Page({
               platforms={game?.platforms}
             />
 
-            <h2 className="mt-3 text-xl font-semibold">Summary</h2>
-            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <p className="text-justify">
-                {game?.summary ?? "No summary is available for this game."}
-              </p>
-            </div>
-
-            <h2 className="mt-3 text-xl font-semibold">Story</h2>
-            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <p className="text-justify">
-                {game?.storyline ?? "No story is available for this game."}
-              </p>
-            </div>
+            <GameDescriptionCard header="Summary" description={game?.summary} />
+            <GameDescriptionCard
+              header="Storyline"
+              description={game?.storyline}
+            />
           </div>
 
           <div>

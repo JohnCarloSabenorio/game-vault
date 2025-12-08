@@ -1,5 +1,4 @@
 "use client";
-import { Rating } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function GameCardDescription({
