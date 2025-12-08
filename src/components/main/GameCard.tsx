@@ -5,7 +5,7 @@ import GameCardDescription from "./GameCardDescription";
 
 export default function GameCard({ gameData }: { gameData: any }) {
   return (
-    <div className="bg-gray-600/60 p-3 rounded-md cursor-pointer h-full w-fit">
+    <div className="flex flex-col justify-end bg-gray-600/60 p-3 rounded-md cursor-pointer h-full w-fit">
       {/* Image */}
       <Image
         width={300}
@@ -16,7 +16,7 @@ export default function GameCard({ gameData }: { gameData: any }) {
             : "/images/placeholder.jpg"
         }
         alt="Video game image"
-        className="mb-3 rounded-md"
+        className="mb-3 w-full h-full rounded-md"
       />
       {/* Description */}
       <GameCardDescription

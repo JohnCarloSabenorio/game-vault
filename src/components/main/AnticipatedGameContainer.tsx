@@ -8,8 +8,8 @@ export default function AnticipatedGameContainer({
   gamesData: any[];
 }) {
   return (
-    <div className="flex flex-col justify-start gap-3 px-3 text-white">
-      <h1 className="main-header ">Most Anticipated</h1>
+    <div className="flex flex-col gap-3 px-3 text-white">
+      <h1 className="main-header">Most Anticipated</h1>
 
       <div className="gap-3 grid  grid-cols-1 md:grid-cols-2">
         {gamesData.map((data, idx) => {
