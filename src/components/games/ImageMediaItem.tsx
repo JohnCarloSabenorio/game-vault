@@ -21,13 +21,13 @@ export default function ImageMediaItem({
       onClick={() =>
         handleClick(
           img.url
-            ? `https:${img.url.replace("t_thumb", "t_4k")}`
+            ? `https:${img.url.replace("t_thumb", "t_1080p")}`
             : "/images/placeholder.png",
           img.id,
           true
         )
       }
-      src={`https:${img.url.replace("t_thumb", "t_4k")}`}
+      src={`https:${img.url.replace("t_thumb", "t_1080p")}`}
       alt="Image"
     />
   );

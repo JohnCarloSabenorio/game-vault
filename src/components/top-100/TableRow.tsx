@@ -22,7 +22,7 @@ export default function TableRow({
           className="w-35 rounded-md"
           src={
             gameData?.cover?.url
-              ? `https:${gameData.cover.url.replace("t_thumb", "t_4k")}`
+              ? `https:${gameData.cover.url.replace("t_thumb", "t_1080p")}`
               : "/images/placeholder.jpg"
           }
           alt={gameData?.name || "Game cover"}

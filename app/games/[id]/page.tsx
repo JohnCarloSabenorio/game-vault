@@ -28,18 +28,18 @@ export default async function Page({
     notFound();
   }
 
-  const trailers = game.videos.filter(
-    (video: any) => video.name.toLowerCase() == "trailer"
-  );
+  const trailers = game.videos
+    ? game.videos.filter((video: any) => video.name.toLowerCase() == "trailer")
+    : [];
 
   return (
     <main className="text-white min-h-screen bg-gray-800">
       <GameBackground
         bgUrl={
           game?.artworks
-            ? game.artworks[0].url.replace("t_thumb", "t_4k")
+            ? game.artworks[0].url.replace("t_thumb", "t_1080p")
             : game?.screenshots
-            ? `https:${game.screenshots[0].url.replace("t_thumb", "t_4k")}`
+            ? `https:${game.screenshots[0].url.replace("t_thumb", "t_1080p")}`
             : "/images/placeholder.png"
         }
       />
@@ -52,7 +52,7 @@ export default async function Page({
           <img
             src={
               game?.cover?.url
-                ? `https:${game.cover.url.replace("t_thumb", "t_4k")}`
+                ? `https:${game.cover.url.replace("t_thumb", "t_1080p")}`
                 : "/images/placeholder.jpg"
             }
             className="w-90 rounded-md mx-auto"
@@ -99,10 +99,10 @@ export default async function Page({
             />
 
             <GameDescriptionCard header="Summary" description={game?.summary} />
-            <GameDescriptionCard
+            {/* <GameDescriptionCard
               header="Storyline"
               description={game?.storyline}
-            />
+            /> */}
           </div>
 
           <div>
@@ -116,7 +116,7 @@ export default async function Page({
 
             {/* <ExternalLinksCard websites={game?.websites} /> */}
             <h1 className="mt-3">Parent Game:</h1>
-            <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+            <div className="flex mt-3 border rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
               <a>{game.parent_game ? game.parent_game.name : "N/A"}</a>
             </div>
           </div>

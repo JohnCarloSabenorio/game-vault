@@ -13,7 +13,9 @@ export default function AnticipatedGameContainer({
 
       <div className="gap-3 grid  grid-cols-1 md:grid-cols-2">
         {gamesData.map((data, idx) => {
-          return <HorizontalGameCard key={idx} game={data} />;
+          return (
+            <HorizontalGameCard key={idx} game={data} displayDate={true} />
+          );
         })}
       </div>
     </div>

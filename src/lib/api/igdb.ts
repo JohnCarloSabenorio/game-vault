@@ -42,7 +42,6 @@ export async function getGameById(id: number) {
     const age_rating_field = `age_ratings.*, age_ratings.rating_category.*, age_ratings.rating_content_descriptions.*`;
 
     const response = await fetch("https://api.igdb.com/v4/games", {
-      next: { revalidate: 3600 },
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -62,7 +61,7 @@ export async function getGameById(id: number) {
     console.error(err);
   }
 }
-export async function getNewlyReleasedGames() {
+export async function getNewlyReleasedGames(limit: number) {
   try {
     const response = await fetch("https://api.igdb.com/v4/games", {
       next: { revalidate: 3600 },
@@ -74,7 +73,7 @@ export async function getNewlyReleasedGames() {
       },
       body: `fields name,game_type,rating,total_rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & first_release_date > ${Math.round(
         Date.now() / 1000
-      )}; sort first_release_date desc; limit 5;`,
+      )}; sort first_release_date desc; limit ${limit};`,
     });
 
     if (!response.ok) {
@@ -151,23 +150,6 @@ async function fetchGameData(game_id: number) {
       Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
     },
     body: `fields name,first_release_date,cover.*,artworks.*,platforms.*,genres.*,hypes,rating,total_rating,total_rating_count; where id = ${game_id};`,
-  });
-
-  const data = await response.json();
-
-  return data[0];
-}
-
-async function fetchCompanyData(company_id: number) {
-  const response = await fetch(`https://api.igdb.com/v4/companies/`, {
-    next: { revalidate: 3600 }, // cache 1 hour
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Client-ID": process.env.NEXT_CLIENT_ID!,
-      Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
-    },
-    body: `fields name; where id = ${company_id};`,
   });
 
   const data = await response.json();

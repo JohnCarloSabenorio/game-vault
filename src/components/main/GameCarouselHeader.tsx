@@ -10,9 +10,9 @@ export default function GameCarouselHeader({
     <div className="px-3 flex items-center justify-between">
       <h1 className="main-header ">{header}</h1>
 
-      <Link href={link} prefetch={true}>
+      <a href={link}>
         <p className="text-white">View All</p>
-      </Link>
+      </a>
     </div>
   );
 }

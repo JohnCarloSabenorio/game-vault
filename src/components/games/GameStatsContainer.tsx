@@ -22,17 +22,11 @@ export default function GameStatsContainer({
   critic_rating_count: number;
 }) {
   return (
-    <div className="flex justify-evenly flex-wrap border-2 rounded-md overflow-hidden mt-3 w-full bg-gray-500">
+    <div className="flex justify-evenly flex-wrap border rounded-md overflow-hidden mt-3 w-full bg-gray-500">
       {/* Total Rating */}
       <div className="flex flex-col justify-center gap-1 items-center p-2">
         <p className="font-bold flex items-center bg-red-600 rounded-md p-1">
           {" "}
-          <StarIcon
-            sx={{
-              width: 25,
-              height: 25,
-            }}
-          />{" "}
           Total&nbsp;Rating
         </p>
         <div className="flex items-center">

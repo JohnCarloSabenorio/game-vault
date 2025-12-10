@@ -11,11 +11,22 @@ export default function MediaCarousel({
   trailers: any;
   screenshots: any;
 }) {
+  /* 
+            game?.artworks
+            ? game.artworks[0].url.replace("t_thumb", "t_1080p")
+            : game?.screenshots
+            ? `https:${game.screenshots[0].url.replace("t_thumb", "t_1080p")}`
+            : "/images/placeholder.png"
+  */
   const [displayUrl, setDisplayUrl] = useState(
-    `https://www.youtube.com/embed/${trailers[0].video_id}`
+    trailers[0]
+      ? `https://www.youtube.com/embed/${trailers[0]?.video_id}`
+      : `https:${screenshots[0]?.url.replace("t_thumb", "t_1080p")}`
   );
-  const [activeMediaItem, setActiveMediaItem] = useState(trailers[0].id);
-  const [isImage, setIsImage] = useState(false);
+  const [activeMediaItem, setActiveMediaItem] = useState(
+    trailers[0] ? trailers[0].id : screenshots[0].id
+  );
+  const [isImage, setIsImage] = useState(!trailers[0]);
 
   function handleMediaChange(url: string, id: any, isAnImage: boolean) {
     setActiveMediaItem(id);

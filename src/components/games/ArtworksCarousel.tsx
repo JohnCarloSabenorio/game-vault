@@ -56,7 +56,7 @@ export default function ArtworksCarousel({ artworks }: { artworks: any[] }) {
                       (art: { width: number; height: number }) =>
                         art.width > art.height
                     )
-                    .url.replace("t_thumb", "t_4k")}
+                    .url.replace("t_thumb", "t_1080p")}
                   alt="Gamevault banner"
                 />
               </CarouselItem>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { StyledEngineProvider } from "@mui/material/styles";
+
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -35,9 +37,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
-        <Navbar />
-        <div className="min-h-screen mt-16">{children}</div>
-        <Footer />
+        <StyledEngineProvider injectFirst>
+          <Navbar />
+          <div className="min-h-screen mt-16">{children}</div>
+          <Footer />
+        </StyledEngineProvider>
       </body>
     </html>
   );

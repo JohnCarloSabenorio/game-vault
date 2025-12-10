@@ -45,14 +45,14 @@ export default function Navbar() {
       {/* Navbar Content */}
       <div className="flex w-full justify-between">
         <div className="flex items-center gap-3">
-          <Link href={"/"}>
+          <a href={"/"}>
             <Image
               src={"/images/gamevault-logo.png"}
               width={60}
               height={60}
               alt="GameVault Logo"
             />
-          </Link>
+          </a>
         </div>
         <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
           <input
@@ -93,7 +93,7 @@ export default function Navbar() {
           ) : (
             <div className="grid grid-cols-2 gap-3">
               {searchedGames.map((data, idx) => (
-                <HorizontalGameCard key={idx} game={data} />
+                <HorizontalGameCard key={idx} game={data} displayDate={false} />
               ))}
             </div>
           )

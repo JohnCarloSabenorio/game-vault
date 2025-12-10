@@ -10,7 +10,7 @@ import {
 } from "@/lib/api/igdb";
 import { Suspense } from "react";
 export default async function Home() {
-  const newGames = await getNewlyReleasedGames();
+  const newGames = await getNewlyReleasedGames(20);
   const anticipatedGames = await getMostAnticipatedGames();
   const topActivePlayers = await getPopularGames(3, 20);
   const igdbMostPlayed = await getPopularGames(4, 20);
@@ -20,17 +20,6 @@ export default async function Home() {
     <main className="mt-5">
       <div className="flex justify-between flex-col lg:flex-row px-5">
         {/* Recent Releases */}
-        <div className="flex flex-col justify-start flex-1">
-          <Suspense
-            fallback={
-              <div className="h-full flex items-center justify-center">
-                <p className="text-center text-white text-3xl">Loading...</p>
-              </div>
-            }
-          >
-            <FeaturedGamesCarousel newGames={newGames} />
-          </Suspense>
-        </div>
         {/* Top 6 most popular */}
         {/* Card Container */}
       </div>
@@ -48,6 +37,8 @@ export default async function Home() {
       {/* Most Popular Video Games */}
 
       <div className="mt-5">
+        <GameCarouselHeader header="New Games" link="/top-100/most-active" />
+        <GameCardCarousel lg_basis="basis:1/6" gamesData={newGames} />
         <GameCarouselHeader
           header="IGDB Top Active Players"
           link="/top-100/most-active"

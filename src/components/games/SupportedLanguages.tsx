@@ -37,7 +37,7 @@ export default function SupportedLanguages({
   }
 
   return (
-    <div className="flex mt-3 border-2 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+    <div className="flex mt-3 border rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
       <h1 className="mt-3">Supported Languages</h1>
       <table className="border-separate border-spacing-x-3 border-spacing-y-2">
         <thead className="text-center">
