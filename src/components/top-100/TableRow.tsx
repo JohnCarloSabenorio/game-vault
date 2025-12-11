@@ -11,7 +11,7 @@ export default function TableRow({
   topNumber: number;
 }) {
   return (
-    <tr>
+    <tr className="">
       {/* Number */}
       {/* Game Image and Title */}
       <td className="p-3 text-center text-xl">{topNumber}</td>
@@ -27,9 +27,14 @@ export default function TableRow({
           }
           alt={gameData?.name || "Game cover"}
         />
-        <h1 className="text-xl flex-1 wrap-break-word min-w-0">
-          {gameData.name}
-        </h1>
+        <a
+          className="cursor-pointer hover:underline"
+          href={`/games/${gameData.id}`}
+        >
+          <h1 className="text-xl flex-1 wrap-break-word min-w-0">
+            {gameData.name}
+          </h1>
+        </a>
       </td>
 
       {/* Platform */}

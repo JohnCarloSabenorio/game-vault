@@ -42,7 +42,7 @@ export default async function Page({
 
       {/* Main Content */}
       <div className="relative text-white max-w-6xl mx-auto p-3 z-10">
-        <h1 className="text-3xl font-bold">{game.name}</h1>
+        <h1 className="text-3xl font-bold mt-5">{game.name}</h1>
 
         <div className="flex flex-col gap-3 md:flex-row mt-5">
           <img

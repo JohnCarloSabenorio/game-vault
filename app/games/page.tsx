@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 export default function Page() {
-  return redirect("/top-100/most-played");
+  return redirect("/games/1");
 
   return (
     <div className="text-white mt-20">
