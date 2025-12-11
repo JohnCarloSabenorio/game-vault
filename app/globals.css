@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Galindo&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -126,5 +127,30 @@ body {
 @layer components {
   .main-header {
     @apply text-white mt-5 text-3xl font-semibold;
+  }
+}
+
+@layer utilities {
+  .galindo {
+    font-family: "Galindo", sans-serif;
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-200 rounded-md;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-500 rounded-md cursor-pointer;
+    /* background: #e0cbcb; */
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
   }
 }

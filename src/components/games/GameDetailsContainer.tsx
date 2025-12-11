@@ -41,7 +41,7 @@ export default function GameDetailsContainer({
         <GameDetailCard header="Game Engines:" data={game_engines} />
 
         <div className="bg-gray-500 flex-1 rounded-md p-3">
-          <h1 className="">Platforms:</h1>
+          <h1 className="font-semibold mb-3">Platforms:</h1>
           <div className="flex flex-wrap gap-1">
             {platforms ? (
               platforms.map((data: any, idx: number) => {

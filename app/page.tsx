@@ -20,8 +20,10 @@ export default async function Home() {
     <main className="mt-5 px-10">
       <div className="flex flex-col gap-3 lg:flex-row w-full mt-25 items-center text-white p-5 flex-1">
         <div className="flex-1">
-          <h1 className="text-6xl font-bold text-cyan-300">GameVault</h1>
-          <h1 className="text-4xl font-bold mt-3">
+          <h1 className="text-6xl font-bold text-cyan-300 galindo">
+            GameVault
+          </h1>
+          <h1 className="text-4xl font-bold mt-3 galindo">
             Find, Explore, and Store Your Favorite Games!
           </h1>
           <p className="mt-3">

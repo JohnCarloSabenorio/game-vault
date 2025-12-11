@@ -110,9 +110,21 @@ export default async function Page({
             {/* Supported Languages */}
             <SupportedLanguages languageSupports={game.language_supports} />
 
-            <h1 className="mt-3">Parent Game:</h1>
-            <div className="flex mt-3 border rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <a>{game.parent_game ? game.parent_game.name : "N/A"}</a>
+            <div className="flex items-center mt-3 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+              <h1 className="mt-3 flex flex-col justify-center items-center">
+                <span className="font-semibold">Parent Game</span>
+                {game.parent_game ? (
+                  <a
+                    className="cursor-pointer hover:underline mt-3"
+                    href={`/games/${game.parent_game.id}`}
+                  >
+                    {" "}
+                    {game.parent_game.name}{" "}
+                  </a>
+                ) : (
+                  <p className="mt-3">N/A</p>
+                )}
+              </h1>
             </div>
           </div>
         </div>

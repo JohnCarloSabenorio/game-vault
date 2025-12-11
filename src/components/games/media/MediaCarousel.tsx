@@ -48,7 +48,7 @@ export default function MediaCarousel({
           ></iframe>
         )}
       </div>
-      <div className="mt-3 bg-gray-800 w-full p-1 rounded-md overflow-x-scroll flex gap-1">
+      <div className="mt-3 bg-gray-800 w-full p-1 rounded-md overflow-x-scroll flex gap-1 scrollbar">
         {(trailers || []).map((video: any, idx: number) => {
           return (
             <VideoMediaItem

@@ -7,10 +7,11 @@ export default function DateCard({
   label: string;
 }) {
   return (
-    <div className="flex mt-3 border rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-      <p className="">
-        {label}: {date}
-      </p>
+    <div className="flex flex-col items-center mt-3 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+      <div className="mt-3">
+        <p className="flex flex-col justify-center font-semibold">{label}</p>
+      </div>
+      <div>{date}</div>
     </div>
   );
 }

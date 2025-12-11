@@ -22,7 +22,7 @@ export default function GameStatsContainer({
   critic_rating_count: number;
 }) {
   return (
-    <div className="flex justify-evenly flex-wrap border rounded-md overflow-hidden mt-3 w-full bg-gray-500">
+    <div className="flex justify-evenly flex-wrap rounded-md overflow-hidden mt-3 w-full bg-gray-500">
       <div className="flex flex-col justify-center gap-1 items-center p-2">
         <p className="font-bold flex items-center bg-red-600 rounded-md p-1 gap-1">
           <i className="ri-star-fill text-[20px] inline-block text-white"></i>
