@@ -24,7 +24,7 @@ export default function HorizontalGameCard({
 
   return (
     <a href={`/games/${game.id}`}>
-      <div className="flex-1 bg-gray-600/60 rounded-md p-3 flex items-center gap-5">
+      <div className="flex-1 bg-gray-600/60 rounded-md p-3 flex items-center gap-5 hover:bg-gray-700/60 hover:shadow-[0px_0px_20px_5px_rgba(66,_220,_219,_0.5)] transition-all">
         <Image
           width={300}
           height={300}

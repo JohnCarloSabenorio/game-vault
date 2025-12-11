@@ -18,50 +18,68 @@ export default async function Home() {
   const steamMostReviewed = await getPopularGames(8, 20);
   return (
     <main className="mt-5">
-      <div className="flex justify-between flex-col lg:flex-row px-5">
-        {/* Recent Releases */}
-        {/* Top 6 most popular */}
-        {/* Card Container */}
+      <div className="flex flex-col gap-3 lg:flex-row w-full mt-25 items-center text-white p-5 flex-1">
+        <div className="flex-1">
+          <h1 className="text-6xl font-bold">GameVault</h1>
+          <h1 className="text-4xl font-bold mt-3">
+            Find, Explore, and Store Your Favorite Games!
+          </h1>
+          <p className="mt-3">
+            GameVault brings together the top games from IGDB and Steam,
+            offering a clean and intuitive way to browse popular titles and
+            search for specific games. It also serves as a hands-on project for
+            enhancing my Next.js development skills while building a real-world
+            application.
+          </p>
+        </div>
+        <div className="w-full flex-1 rounded-md">
+          <img
+            className="rounded-md"
+            src="/images/gamevault-display.jpeg"
+            alt="gamevault-display"
+          />
+        </div>
       </div>
 
-      <Suspense
-        fallback={
-          <div className="h-full flex items-center justify-center">
-            <p className="text-center text-white text-3xl">Loading...</p>
-          </div>
-        }
-      >
-        <AnticipatedGameContainer gamesData={anticipatedGames} />
-      </Suspense>
+      <AnticipatedGameContainer gamesData={anticipatedGames} />
 
       {/* Most Popular Video Games */}
 
       <div className="mt-5">
         <GameCarouselHeader header="New Games" link="/top-100/most-active" />
-        <GameCardCarousel lg_basis="basis:1/6" gamesData={newGames} />
+        <GameCardCarousel lg_basis="lg:basis-1/6" gamesData={newGames} />
         <GameCarouselHeader
           header="IGDB Top Active Players"
           link="/top-100/most-active"
         />
-        <GameCardCarousel lg_basis="basis:1/6" gamesData={topActivePlayers} />
+        <GameCardCarousel
+          lg_basis="lg:basis-1/6"
+          gamesData={topActivePlayers}
+        />
 
         <GameCarouselHeader
           header="IGDB Most Played"
           link="/top-100/most-played"
         />
-        <GameCardCarousel lg_basis="basis:1/6" gamesData={igdbMostPlayed} />
+        <GameCardCarousel lg_basis="lg:basis-1/6" gamesData={igdbMostPlayed} />
 
         <GameCarouselHeader
           header="Steam 24hrs Peak Players"
           link="/top-100/peak-players"
         />
-        <GameCardCarousel lg_basis="basis:1/6" gamesData={steamPeakPlayers} />
+        <GameCardCarousel
+          lg_basis="lg:basis-1/6"
+          gamesData={steamPeakPlayers}
+        />
 
         <GameCarouselHeader
           header="Steam Most Reviewed"
           link="/top-100/most-reviewed"
         />
-        <GameCardCarousel lg_basis="basis:1/6" gamesData={steamMostReviewed} />
+        <GameCardCarousel
+          lg_basis="lg:basis-1/6"
+          gamesData={steamMostReviewed}
+        />
       </div>
     </main>
   );

@@ -20,7 +20,7 @@ export default function GameCardCarousel({
   gamesData: any[];
   lg_basis: string;
 }) {
-  const games = gamesData;
+  const games = gamesData ?? [];
 
   return (
     <Carousel
@@ -29,12 +29,12 @@ export default function GameCardCarousel({
         align: "start",
       }}
     >
-      <CarouselContent>
+      <CarouselContent className="p-5">
         {games.map((data, idx) => {
           return (
             <CarouselItem
               key={idx}
-              className={`group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/4 lg:basis-1/6`}
+              className={`group transition-all relative basis-1/1 sm:basis-1/2 md:basis-1/4 ${lg_basis}`}
             >
               <GameCard gameData={data} />
             </CarouselItem>

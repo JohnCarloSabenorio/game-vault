@@ -1,20 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Image from "next/image";
 import GameStatsContainer from "@/components/games/GameStatsContainer";
-import { Carousel, CarouselContent } from "@/components/ui/carousel";
 import { getGameById } from "@/lib/api/igdb";
 import { notFound } from "next/navigation";
 import GameBackground from "@/components/games/GameBackground";
-import GameTag from "@/components/top-100/GameTag";
 import GameDetailsContainer from "@/components/games/GameDetailsContainer";
 import MediaCarousel from "@/components/games/MediaCarousel";
 import SupportedLanguages from "@/components/games/SupportedLanguages";
 import formatDate from "@/lib/utils/formatDate";
 import DateCard from "@/components/games/DateCard";
-import ExternalLinksCard from "@/components/games/ExternalLinksCard";
 import GameCardCarousel from "@/components/main/GameCardCarousel";
-import GameCard from "@/components/main/GameCard";
 import GameDescriptionCard from "@/components/games/GameDescriptionCard";
 export default async function Page({
   params,
@@ -28,6 +23,7 @@ export default async function Page({
     notFound();
   }
 
+  console.log("the game:", game);
   const trailers = game.videos
     ? game.videos.filter((video: any) => video.name.toLowerCase() == "trailer")
     : [];
@@ -53,7 +49,7 @@ export default async function Page({
             src={
               game?.cover?.url
                 ? `https:${game.cover.url.replace("t_thumb", "t_1080p")}`
-                : "/images/placeholder.jpg"
+                : "/images/no-image.png"
             }
             className="w-90 rounded-md mx-auto"
             alt="Game Cover"
@@ -125,7 +121,7 @@ export default async function Page({
         <h2 className="mt-3 text-xl font-semibold">DLCs</h2>
 
         {game.dlcs ? (
-          <GameCardCarousel lg_basis="lg:basis-1/4" gamesData={game.dlcs} />
+          <GameCardCarousel lg_basis="lg:basis-1/5" gamesData={game.dlcs} />
         ) : (
           <p className="italic mt-3">No DLC Available</p>
         )}
@@ -133,7 +129,7 @@ export default async function Page({
         {/* Similar Games */}
         <h2 className="mt-3 text-xl font-semibold">Similar Games</h2>
         <GameCardCarousel
-          lg_basis="lg:basis-1/4"
+          lg_basis="lg:basis-1/5"
           gamesData={game.similar_games}
         />
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
@@ -12,10 +13,8 @@ export default function ImageMediaItem({
   handleClick: any;
 }) {
   return (
-    <Image
-      width={300}
-      height={250}
-      className={`w-32 h-15 rounded-md border-3 ${
+    <img
+      className={`w-25 h-15 rounded-md border-3 object-cover ${
         activeMedia == img.id ? "border-white" : "border-black"
       } cursor-pointer`}
       onClick={() =>

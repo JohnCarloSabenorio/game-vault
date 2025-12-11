@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function GameCard({ gameData }: { gameData: any }) {
   const router = useRouter();
   return (
-    <div className="flex flex-col justify-end bg-gray-600/60 p-3 rounded-md cursor-pointer h-full w-fit">
+    <div className="flex flex-col justify-end bg-gray-600/60 p-3 rounded-md cursor-pointer h-full w-fit hover:shadow-[0px_0px_20px_5px_rgba(66,_220,_219,_0.5)] hover:z-50 hover:scale-103 transition-all">
       {/* Image */}
       <Image
         width={300}
@@ -14,7 +14,7 @@ export default function GameCard({ gameData }: { gameData: any }) {
         src={
           gameData?.cover?.url
             ? `https:${gameData.cover.url.replace("t_thumb", "t_1080p")}`
-            : "/images/placeholder.jpg"
+            : "/images/no-image.png"
         }
         alt="Video game image"
         className="mb-3 w-full h-full rounded-md"

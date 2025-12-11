@@ -6,6 +6,7 @@ export default function SupportedLanguages({
 }) {
   const languages: any = {};
 
+  languageSupports = languageSupports ?? [];
   for (const data of languageSupports) {
     const langId = data.language.id;
     const langSupportId = data.language_support_type.id;
