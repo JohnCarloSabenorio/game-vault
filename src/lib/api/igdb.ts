@@ -109,6 +109,11 @@ export async function getMostAnticipatedGames() {
   }
 }
 
+// Utility function to delay execution
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export async function getPopularGames(popType: number = 1, limit: number = 20) {
   try {
     const response = await fetch(
@@ -127,14 +132,18 @@ export async function getPopularGames(popType: number = 1, limit: number = 20) {
 
     const json = await response.json();
 
-    // Fetch full data for each game in parallel
-    const popularGames = Array.isArray(json)
-      ? await Promise.all(
-          json
-            .filter((d: any) => d.game_id && d.game_id > 0)
-            .map((d: any) => fetchGameData(d.game_id))
-        )
-      : [];
+    const popularGames: any[] = [];
+
+    if (Array.isArray(json)) {
+      for (const d of json.filter((d: any) => d.game_id && d.game_id > 0)) {
+        const gameData = await fetchGameData(d.game_id);
+        popularGames.push(gameData);
+
+        // Add delay (e.g., 200ms) before the next fetch
+        await sleep(100);
+      }
+    }
+
     return popularGames;
   } catch (err) {
     console.error(err);
