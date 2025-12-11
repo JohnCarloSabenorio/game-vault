@@ -28,7 +28,7 @@ export default function GameCard({ gameData }: { gameData: any }) {
       <a href={`/games/${gameData.id}`} className="cursor-pointer">
         <button
           // onClick={() => router.push(`/games/${gameData.id}`)}
-          className="bg-gray-400 w-full rounded-md p-2 mt-1 font-semibold cursor-pointer"
+          className="bg-gray-400 w-full rounded-md p-2 mt-1 font-semibold cursor-pointer transition-all hover:bg-cyan-200"
         >
           Visit
         </button>

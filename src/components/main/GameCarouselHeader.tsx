@@ -11,7 +11,7 @@ export default function GameCarouselHeader({
       <h1 className="main-header ">{header}</h1>
 
       <a href={link} className="">
-        <p className="text-white hover:underline hover:font-semibold">View Top 100</p>
+        <p className="text-white underline hover:font-semibold">View Top 100</p>
       </a>
     </div>
   );

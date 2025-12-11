@@ -17,10 +17,10 @@ export default async function Home() {
   const steamPeakPlayers = await getPopularGames(5, 20);
   const steamMostReviewed = await getPopularGames(8, 20);
   return (
-    <main className="mt-5">
+    <main className="mt-5 px-10">
       <div className="flex flex-col gap-3 lg:flex-row w-full mt-25 items-center text-white p-5 flex-1">
         <div className="flex-1">
-          <h1 className="text-6xl font-bold">GameVault</h1>
+          <h1 className="text-6xl font-bold text-cyan-300">GameVault</h1>
           <h1 className="text-4xl font-bold mt-3">
             Find, Explore, and Store Your Favorite Games!
           </h1>

@@ -5,7 +5,7 @@ import { getGameById } from "@/lib/api/igdb";
 import { notFound } from "next/navigation";
 import GameBackground from "@/components/games/GameBackground";
 import GameDetailsContainer from "@/components/games/GameDetailsContainer";
-import MediaCarousel from "@/components/games/MediaCarousel";
+import MediaCarousel from "@/components/games/media/MediaCarousel";
 import SupportedLanguages from "@/components/games/SupportedLanguages";
 import formatDate from "@/lib/utils/formatDate";
 import DateCard from "@/components/games/DateCard";
@@ -110,7 +110,6 @@ export default async function Page({
             {/* Supported Languages */}
             <SupportedLanguages languageSupports={game.language_supports} />
 
-            {/* <ExternalLinksCard websites={game?.websites} /> */}
             <h1 className="mt-3">Parent Game:</h1>
             <div className="flex mt-3 border rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
               <a>{game.parent_game ? game.parent_game.name : "N/A"}</a>
