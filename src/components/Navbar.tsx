@@ -48,6 +48,7 @@ export default function Navbar() {
           <a href={"/"}>
             <Image
               src={"/images/gamevault-logo.png"}
+              className="hover:shadow-[0px_0px_20px_5px_rgba(66,_220,_219,_0.5)] rounded-full bg-transparent transition-all"
               width={60}
               height={60}
               alt="GameVault Logo"

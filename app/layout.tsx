@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StyledEngineProvider } from "@mui/material/styles";
+import "remixicon/fonts/remixicon.css";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
