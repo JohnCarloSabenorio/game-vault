@@ -128,11 +128,13 @@ export async function getPopularGames(popType: number = 1, limit: number = 20) {
     const json = await response.json();
 
     // Fetch full data for each game in parallel
-    const popularGames = await Promise.all(
-      json
-        .filter((d: any) => d.game_id && d.game_id > 0)
-        .map((d: any) => fetchGameData(d.game_id))
-    );
+    const popularGames = Array.isArray(json)
+      ? await Promise.all(
+          json
+            .filter((d: any) => d.game_id && d.game_id > 0)
+            .map((d: any) => fetchGameData(d.game_id))
+        )
+      : [];
     return popularGames;
   } catch (err) {
     console.error(err);
