@@ -48,7 +48,7 @@ export default async function Home() {
       {/* Most Popular Video Games */}
 
       <div className="mt-5">
-        <GameCarouselHeader header="New Games" link="/top-100/most-active" />
+        <GameCarouselHeader header="New Games" link="" />
         <GameCardCarousel lg_basis="lg:basis-1/6" gamesData={newGames} />
         <GameCarouselHeader
           header="IGDB Top Active Players"
