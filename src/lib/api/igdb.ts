@@ -71,7 +71,7 @@ export async function getNewlyReleasedGames(limit: number) {
         "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
         Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
       },
-      body: `fields name,game_type,rating,total_rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & first_release_date > ${Math.round(
+      body: `fields name,game_type,rating,total_rating,total_rating_count,cover.*,artworks.*,platforms,first_release_date; where game_type = 0 & first_release_date < ${Math.round(
         Date.now() / 1000
       )}; sort first_release_date desc; limit ${limit};`,
     });
