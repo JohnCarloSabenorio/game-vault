@@ -30,7 +30,7 @@ export default function MediaCarousel({
   }
 
   return (
-    <div>
+    <div className="max-w-180">
       <div>
         {isImage ? (
           <Image
