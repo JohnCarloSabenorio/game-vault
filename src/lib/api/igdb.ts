@@ -138,9 +138,6 @@ export async function getPopularGames(popType: number = 1, limit: number = 20) {
       for (const d of json.filter((d: any) => d.game_id && d.game_id > 0)) {
         const gameData = await fetchGameData(d.game_id);
         popularGames.push(gameData);
-
-        // Add delay (e.g., 200ms) before the next fetch
-        await sleep(100);
       }
     }
 

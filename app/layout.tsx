@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/gamevault-logo.png" type="favicon.ico" />
+        <link rel="icon" href="/gamevault-logo.png" type="fav n.ico" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
