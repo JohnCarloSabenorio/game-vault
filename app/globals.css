@@ -135,6 +135,8 @@ body {
     font-family: "Galindo", sans-serif;
   }
 
+  .scrollbar-hide::-webkit-scrollbar {
+  }
   .scrollbar::-webkit-scrollbar {
     width: 20px;
     height: 20px;

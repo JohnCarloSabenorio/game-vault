@@ -40,7 +40,7 @@ export default async function Page({
         Top 100 {catIdxAndTitle[1]}
       </h1>
       {/* Table */}
-      <div className="max-w-[1500px] rounded-md mx-auto overflow-hidden">
+      <div className="w-full lg:max-w-[1500px] rounded-md mx-auto overflow-x-scroll scrollbar-hide">
         <table className="w-full border-collapse">
           <TableHeaders />
           <TableBody topGames={topGames} />
