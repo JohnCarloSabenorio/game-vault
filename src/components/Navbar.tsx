@@ -43,7 +43,7 @@ export default function Navbar() {
       className={`flex flex-col w-full justify-between bg-gray-600 fixed top-0 p-1 z-50`}
     >
       {/* Navbar Content */}
-      <div className="flex w-full justify-between">
+      <div className="flex w-full justify-between gap-5">
         <div className="flex items-center gap-3">
           <a href={"/"}>
             <Image
@@ -54,6 +54,8 @@ export default function Navbar() {
               alt="GameVault Logo"
             />
           </a>
+
+          <a className="text-white text-md font-semibold">Home</a>
         </div>
         <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
           <input
