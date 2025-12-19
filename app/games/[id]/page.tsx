@@ -134,7 +134,7 @@ export default async function Page({
         {game.dlcs ? (
           <GameCardCarousel lg_basis="lg:basis-1/5" gamesData={game.dlcs} />
         ) : (
-          <p className="italic mt-3">No DLC Available</p>
+          <p className="italic mt-3">No DLCs Available</p>
         )}
 
         {/* Similar Games */}
