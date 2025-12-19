@@ -13,7 +13,7 @@ export default function loading() {
             GameVault
           </h1>
           <h1 className="text-4xl font-bold mt-3 galindo">
-            Find, Explore, and Store Your Favorite Games!
+            Find and Explore Your Favorite Games!
           </h1>
           <p className="mt-3">
             GameVault brings together the top games from IGDB and Steam,
