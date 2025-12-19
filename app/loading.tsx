@@ -1,5 +1,4 @@
-import AnticipatedGameContainer from "@/components/main/AnticipatedGameContainer";
-import GameCardCarousel from "@/components/main/GameCardCarousel";
+
 import GameCarouselHeader from "@/components/main/GameCarouselHeader";
 import SkeletonCardCarousel from "@/components/skeleton/SkeletonCardCarousel";
 import SkeletonCardContainer from "@/components/skeleton/SkeletonCardContainer";
