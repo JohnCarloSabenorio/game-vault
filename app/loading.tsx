@@ -1,4 +1,3 @@
-
 import GameCarouselHeader from "@/components/main/GameCarouselHeader";
 import SkeletonCardCarousel from "@/components/skeleton/SkeletonCardCarousel";
 import SkeletonCardContainer from "@/components/skeleton/SkeletonCardContainer";
