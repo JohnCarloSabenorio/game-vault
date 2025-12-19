@@ -143,6 +143,7 @@ export async function getPopularGames(popType: number = 1, limit: number = 20) {
       }
     }
 
+    await sleep(100000);
     return popularGames;
   } catch (err) {
     console.error(err);

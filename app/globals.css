@@ -135,7 +135,18 @@ body {
     font-family: "Galindo", sans-serif;
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Firefox */
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+
+  /* IE / old Edge */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
   }
   .scrollbar::-webkit-scrollbar {
     width: 20px;
