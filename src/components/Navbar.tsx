@@ -55,7 +55,7 @@ export default function Navbar() {
             />
           </a>
 
-          <a className="text-white text-md font-semibold">Home</a>
+          <a className="text-white text-md cursor-pointer hover:font-bold">Home</a>
         </div>
         <ul className="flex flex-1 justify-end items-center gap-3 rounded-full px-3 py-1">
           <input
