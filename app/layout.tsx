@@ -32,7 +32,7 @@ export default function RootLayout({
         <link rel="icon" href="/gamevault-logo.png" type="fav n.ico" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black scroll-smooth`}
       >
         <StyledEngineProvider injectFirst>
           <Navbar />

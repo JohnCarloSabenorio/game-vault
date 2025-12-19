@@ -46,6 +46,13 @@ export default async function Page({
           <TableBody topGames={topGames} />
         </table>
       </div>
+
+      <a
+        href="#"
+        className="mt-10 mb-3 text-xl font-bold text-center hover:underline"
+      >
+        Back to top
+      </a>
     </div>
   );
 }
