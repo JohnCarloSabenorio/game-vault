@@ -42,7 +42,9 @@ export default async function Page({
 
       {/* Main Content */}
       <div className="relative text-white max-w-6xl mx-auto p-3 z-10">
-        <h1 className="text-3xl font-bold mt-5">{game.name}</h1>
+        <h1 className="text-3xl font-bold mt-5 text-center md:text-left">
+          {game.name}
+        </h1>
 
         <div className="flex flex-col gap-3 md:flex-row mt-5">
           <img
@@ -51,7 +53,7 @@ export default async function Page({
                 ? `https:${game.cover.url.replace("t_thumb", "t_1080p")}`
                 : "/images/no-image.png"
             }
-            className="w-90 rounded-md mx-auto"
+            className="md:max-w-90 md:max-h-120 rounded-md mx-auto"
             alt="Game Cover"
           />
 
@@ -61,7 +63,7 @@ export default async function Page({
         </div>
 
         <div className="flex flex-col lg:flex-row gap-3">
-          <div>
+          <div className="flex-1">
             <GameStatsContainer
               total_rating={(game.total_rating / 10).toFixed(1)}
               total_rating_count={game?.total_rating_count ?? 0}
@@ -101,7 +103,7 @@ export default async function Page({
             /> */}
           </div>
 
-          <div>
+          <div className="flex-1">
             <DateCard
               label="Date Released"
               date={formatDate(game.first_release_date)}
@@ -110,7 +112,7 @@ export default async function Page({
             {/* Supported Languages */}
             <SupportedLanguages languageSupports={game.language_supports} />
 
-            <div className="flex items-center mt-3 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
+            <div className="flex items-center mt-3 rounded-md gap-3 justify-center flex-wrap w-full p-3  bg-gray-500">
               <h1 className="mt-3 flex flex-col justify-center items-center">
                 <span className="font-semibold">Parent Game</span>
                 {game.parent_game ? (

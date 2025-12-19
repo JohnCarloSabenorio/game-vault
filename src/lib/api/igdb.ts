@@ -56,7 +56,6 @@ export async function getGameById(id: number) {
     }
     const data = await response.json();
 
-    await sleep(100000);
     return { ...data[0] };
   } catch (err) {
     console.error(err);

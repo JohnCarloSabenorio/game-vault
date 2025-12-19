@@ -6,8 +6,8 @@ export default function GameDescriptionCard({
   header: string;
 }) {
   return (
-    <div className="flex mt-3 rounded-md gap-3 flex-wrap w-full p-3 bg-gray-500">
-      <h2 className="mt-3 text-xl font-semibold">{header}</h2>
+    <div className="flex flex-col mt-3 rounded-md gap-3 flex-wrap w-full p-3 bg-gray-500">
+      <h2 className="mt-1 text-xl font-semibold">{header}</h2>
       <p className="text-justify">
         {description ?? "No summary is available for this game."}
       </p>

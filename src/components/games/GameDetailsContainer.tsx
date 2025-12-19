@@ -26,22 +26,22 @@ export default function GameDetailsContainer({
   return (
     <div className="grid grid-cols-2 gap-3 mt-3">
       <div className="flex flex-col gap-3">
-        <GameDetailCard header="Developers:" data={developersData} />
-        <GameDetailCard header="Publishers:" data={publishersData} />
-        <GameDetailCard header="Genres:" data={genres} />
-        <GameDetailCard header="Themes:" data={themes} />
+        <GameDetailCard header="Developers" data={developersData} />
+        <GameDetailCard header="Publishers" data={publishersData} />
+        <GameDetailCard header="Genres" data={genres} />
+        <GameDetailCard header="Themes" data={themes} />
       </div>
 
       <div className="flex flex-col gap-3">
-        <GameDetailCard header="Game Modes:" data={game_modes} />
+        <GameDetailCard header="Game Modes" data={game_modes} />
         <GameDetailCard
-          header="Player Perspectives:"
+          header="Player Perspectives"
           data={player_perspectives}
         />
-        <GameDetailCard header="Game Engines:" data={game_engines} />
+        <GameDetailCard header="Game Engines" data={game_engines} />
 
         <div className="bg-gray-500 flex-1 rounded-md p-3">
-          <h1 className="font-semibold mb-3">Platforms:</h1>
+          <h1 className="font-semibold mb-3">Platforms</h1>
           <div className="flex flex-wrap gap-1">
             {platforms ? (
               platforms.map((data: any, idx: number) => {

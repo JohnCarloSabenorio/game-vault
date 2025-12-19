@@ -30,7 +30,7 @@ export default function MediaCarousel({
   }
 
   return (
-    <div className="max-w-180">
+    <div className="flex-1">
       <div>
         {isImage ? (
           <Image
@@ -38,7 +38,7 @@ export default function MediaCarousel({
             height={200}
             src={displayUrl}
             alt="Image"
-            className="w-full min-h-100 rounded-md"
+            className="w-full h-full rounded-md"
           />
         ) : (
           <iframe
