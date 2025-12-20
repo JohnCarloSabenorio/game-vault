@@ -1,7 +1,6 @@
 "use client";
 
 import FilterCheckList from "./FilterChecklist";
-import PaginationInputs from "./PaginationInputs";
 export default function FiltersContainer() {
   return (
     <div
@@ -20,7 +19,6 @@ export default function FiltersContainer() {
           </svg>
         </button>
 
-        <PaginationInputs />
 
         <FilterCheckList
           header="Narrow down by Pokemon types"

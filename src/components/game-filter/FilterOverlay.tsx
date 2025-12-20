@@ -1,6 +1,5 @@
 "use client";
 import FilterCheckList from "./FilterChecklist";
-import PaginationInputs from "./PaginationInputs";
 
 export default function FilterOverlay() {
   return (
@@ -18,7 +17,6 @@ export default function FilterOverlay() {
           </svg>
         </button>
 
-        <PaginationInputs />
 
         {/* Types */}
         <FilterCheckList
