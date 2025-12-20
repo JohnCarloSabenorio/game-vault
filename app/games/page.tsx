@@ -7,7 +7,7 @@ export default function Page() {
     <main className="flex min-h-screen w-full max-w-7xl flex-col items-center justify-between py-32 mx-auto">
       {/* Container */}
       <div className="flex gap-5 w-full">
-        <div className="w-full">
+        <div className="w-full shrink-0 max-w-220">
           <SearchAndSelectionContainer />
           {/* Search bar */}
           <input

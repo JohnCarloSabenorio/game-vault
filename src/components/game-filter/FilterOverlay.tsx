@@ -1,6 +1,5 @@
 "use client";
 import FilterCheckList from "./FilterChecklist";
-import MeasurementInputs from "./MeasurementInputs";
 import PaginationInputs from "./PaginationInputs";
 
 export default function FilterOverlay() {
@@ -21,7 +20,6 @@ export default function FilterOverlay() {
 
         <PaginationInputs />
 
-        <MeasurementInputs />
         {/* Types */}
         <FilterCheckList
           header="Genre"

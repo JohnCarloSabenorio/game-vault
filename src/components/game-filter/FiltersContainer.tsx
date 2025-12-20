@@ -1,13 +1,11 @@
 "use client";
 
 import FilterCheckList from "./FilterChecklist";
-import MeasurementInputs from "./MeasurementInputs";
 import PaginationInputs from "./PaginationInputs";
-import { useContext } from "react";
 export default function FiltersContainer() {
   return (
     <div
-      className={`flex justify-end  bg-black/60 w-full h-full md:flex md:w-fit md:bg-transparent`}
+      className={`hidden justify-end  bg-black/60 w-full h-full md:flex md:w-fit md:bg-transparent`}
     >
       <div className="bg-white shadow-md rounded-md transition-all duration-300 right-0 p-3 w-100 md:static md:block overflow-y-scroll md:overflow-y-auto">
         {/* Ascending/Descending & Pagination */}
@@ -24,7 +22,6 @@ export default function FiltersContainer() {
 
         <PaginationInputs />
 
-        <MeasurementInputs />
         <FilterCheckList
           header="Narrow down by Pokemon types"
           inputPlaceholder="Search Pokemon Type..."
