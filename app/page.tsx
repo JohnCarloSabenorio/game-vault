@@ -26,7 +26,7 @@ export default async function Home() {
           <h1 className="text-4xl font-bold mt-3 galindo">
             Find, Explore, and Store Your Favorite Games!
           </h1>
-          <p className="mt-3">
+          <p className="mt-8">
             GameVault brings together the top games from IGDB and Steam,
             offering a clean and intuitive way to browse popular titles and
             search for specific games. It also serves as a hands-on project for
