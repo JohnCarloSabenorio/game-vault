@@ -48,10 +48,10 @@ export default function loading() {
 
           <div>
             <div className="flex flex-col items-center mt-3 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <Skeleton className="w-full h-10" />
+              <Skeleton className="w-full h-5" />
             </div>
             <div className="flex flex-col items-center mt-3 rounded-md gap-3 justify-center flex-wrap min-w-100 p-3  bg-gray-500">
-              <Skeleton className="w-full h-10" />
+              <Skeleton className="w-full h-5" />
             </div>
             {/* Supported Languages */}
             <SkeletonSupportedLanguages />
