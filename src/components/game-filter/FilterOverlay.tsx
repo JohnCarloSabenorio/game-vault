@@ -1,5 +1,4 @@
 "use client";
-import FilterCheckList from "./FilterChecklist";
 
 export default function FilterOverlay() {
   return (
@@ -16,24 +15,6 @@ export default function FilterOverlay() {
             <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
           </svg>
         </button>
-
-
-        {/* Types */}
-        <FilterCheckList
-          header="Genre"
-          inputPlaceholder="Search Pokemon Type..."
-        />
-        {/* Weaknesses */}
-        <FilterCheckList
-          header="Narrow down by Pokemon types"
-          inputPlaceholder="Search Pokemon Weakness..."
-        />
-
-        {/* Abilities */}
-        <FilterCheckList
-          header="Narrow down by Pokemon abilities"
-          inputPlaceholder="Search Pokemon Ability..."
-        />
       </div>
     </div>
   );
