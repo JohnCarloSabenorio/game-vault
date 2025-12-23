@@ -29,6 +29,115 @@ export async function searchGame(searchText: string) {
   }
 }
 
+export async function getFiltersMultiQuery() {
+  const body = `
+query genres "Genres" {
+  fields name;
+  sort name asc;
+  limit 7;
+};
+
+query game_modes "Game Modes" {
+  fields name;
+  sort name asc;
+  limit 7;
+};
+
+query platforms "Platforms" {
+  fields name;
+  sort name asc;
+  limit 7;
+};
+
+query themes "Themes" {
+  fields name;
+  sort name asc;
+  limit 7;
+};
+
+query player_perspectives "Player Perspectives" {
+  fields name;
+  sort name asc;
+  limit 7;
+};
+`;
+
+  try {
+    const response = await fetch("https://api.igdb.com/v4/multiquery", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body,
+      next: { revalidate: 86400 },
+    });
+
+    if (!response.ok) {
+      console.log("External api error:", response);
+      return [];
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    return [];
+    console.error(err);
+  }
+}
+export async function getGenres() {
+  try {
+    const response = await fetch("https://api.igdb.com/v4/genres", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body: `fields name; sort name asc; limit 7;`,
+    });
+
+    if (!response.ok) {
+      console.log("External api error:", response);
+      return [];
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    return [];
+    console.error(err);
+  }
+}
+export async function getGameModes() {
+  try {
+    const response = await fetch("https://api.igdb.com/v4/game_modes", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": `${process.env.NEXT_CLIENT_ID}`,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body: `fields name; sort name asc; limit 7;`,
+    });
+
+    if (!response.ok) {
+      console.log("External api error:", response);
+      return [];
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    return [];
+    console.error(err);
+  }
+}
+
 export async function getGameById(id: number) {
   try {
     const language_support_field =

@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import FilterCheckList from "./FilterChecklist";
-export default function FiltersContainer() {
+export default function FiltersContainer({ filters }: { filters: any }) {
+  console.log("the filters:", filters);
   return (
     <div className="bg-gray-100 shadow-md rounded-md transition-all duration-300 right-0 p-3 w-100 hidden lg:block overflow-y-scroll md:overflow-y-auto h-fit">
       <button className="p-1 md:hidden">
@@ -14,30 +16,16 @@ export default function FiltersContainer() {
         </svg>
       </button>
 
-      <FilterCheckList
-        header="Narrow down by Genre"
-        inputPlaceholder="Find a genre"
-      />
-      <FilterCheckList
-        header="Narrow down by Game Mode"
-        inputPlaceholder="Search Game Mode"
-      />
-      <FilterCheckList
-        header="Narrow down by Game Mode"
-        inputPlaceholder="Search Game Mode"
-      />
-      <FilterCheckList
-        header="Narrow down by Player Perspective"
-        inputPlaceholder="Search Player Perspective"
-      />
-      <FilterCheckList
-        header="Narrow down by Themes"
-        inputPlaceholder="Search Theme"
-      />
-      <FilterCheckList
-        header="Narrow down by Platforms"
-        inputPlaceholder="Search Platform"
-      />
+      {filters.map((data: any, idx: number) => {
+        return (
+          <FilterCheckList
+            key={idx}
+            header={`Narrow down by ${data.name}`}
+            inputPlaceholder={`Search`}
+            data={data.result ?? []}
+          />
+        );
+      })}
     </div>
   );
 }

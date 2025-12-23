@@ -1,8 +1,11 @@
 import FiltersContainer from "@/components/game-filter/FiltersContainer";
 import GameList from "@/components/game-filter/GameList";
 import SearchAndSelectionContainer from "@/components/game-filter/SearchAndSelectionContainer";
+import { getFiltersMultiQuery, getGameModes, getGenres } from "@/lib/api/igdb";
 
-export default function Page() {
+export default async function Page() {
+  const filters = await getFiltersMultiQuery();
+
   return (
     <main className="flex min-h-screen w-full max-w-7xl flex-col items-center justify-between py-32 mx-auto">
       {/* Container */}
@@ -21,7 +24,7 @@ export default function Page() {
         </div>
         {/* Filters */}
 
-        <FiltersContainer />
+        <FiltersContainer filters={filters} />
       </div>
     </main>
   );
