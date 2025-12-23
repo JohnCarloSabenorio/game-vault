@@ -61,7 +61,6 @@ query player_perspectives "Player Perspectives" {
   limit 7;
 };
 `;
-
   try {
     const response = await fetch("https://api.igdb.com/v4/multiquery", {
       method: "POST",
@@ -87,6 +86,93 @@ query player_perspectives "Player Perspectives" {
     console.error(err);
   }
 }
+
+export async function getTopGamesMultiQuery() {
+  const now = Math.round(Date.now() / 1000);
+
+  const body = `
+    query games "new_releases" {
+      fields
+        name,
+        game_type,
+        rating,
+        total_rating,
+        total_rating_count,
+        cover.*,
+        artworks.*,
+        platforms.*,
+        first_release_date;
+      where game_type = 0 & first_release_date < ${now};
+      sort first_release_date desc;
+      limit 20;
+    };
+
+    query games "most_anticipated" {
+      fields
+        name,
+        first_release_date,
+        cover.*,
+        artworks.*,
+        platforms.*,
+        hypes;
+      where game_type = 0 & first_release_date > ${now};
+      sort hypes desc;
+      limit 6;
+    };
+
+    query popularity_primitives "active" {
+      fields game_id, value;
+      where popularity_type = 3 & game_id != null;
+      sort value desc;
+      limit 20;
+    };
+
+        query popularity_primitives "mostPlayed" {
+      fields game_id, value;
+      where popularity_type = 4 & game_id != null;
+      sort value desc;
+      limit 20;
+    };
+
+        query popularity_primitives "steamPeak" {
+      fields game_id, value;
+      where popularity_type = 5 & game_id != null;
+      sort value desc;
+      limit 20;
+    };
+
+        query popularity_primitives "mostReviewed" {
+      fields game_id, value;
+      where popularity_type = 8 & game_id != null;
+      sort value desc;
+      limit 20;
+    };
+  `;
+
+  try {
+    const response = await fetch("https://api.igdb.com/v4/multiquery", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Client-ID": process.env.NEXT_CLIENT_ID!,
+        Authorization: `Bearer ${process.env.NEXT_BEARER_TOKEN}`,
+      },
+      body,
+      next: { revalidate: 86400 },
+    });
+
+    if (!response.ok) {
+      console.error("External API error:", response.status);
+      return [];
+    }
+
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+}
+
 export async function getGenres() {
   try {
     const response = await fetch("https://api.igdb.com/v4/genres", {

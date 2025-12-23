@@ -1,21 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 import AnticipatedGameContainer from "@/components/main/AnticipatedGameContainer";
-import FeaturedGamesCarousel from "@/components/main/FeaturedGamesCarousel";
 import GameCardCarousel from "@/components/main/GameCardCarousel";
 import GameCarouselHeader from "@/components/main/GameCarouselHeader";
 import {
   getMostAnticipatedGames,
   getNewlyReleasedGames,
   getPopularGames,
+  getTopGamesMultiQuery,
 } from "@/lib/api/igdb";
-import { Suspense } from "react";
 export default async function Home() {
-  const newGames = await getNewlyReleasedGames(20);
-  const anticipatedGames = await getMostAnticipatedGames();
+  const topGames = await getTopGamesMultiQuery();
   const topActivePlayers = await getPopularGames(3, 20);
   const igdbMostPlayed = await getPopularGames(4, 20);
   const steamPeakPlayers = await getPopularGames(5, 20);
   const steamMostReviewed = await getPopularGames(8, 20);
+
+  console.log("the top games:", topGames);
   return (
     <main className="mt-5 px-10">
       <div className="flex flex-col gap-3 lg:flex-row w-full mt-25 items-center text-white p-5 flex-1">
@@ -43,13 +43,16 @@ export default async function Home() {
         </div>
       </div>
 
-      <AnticipatedGameContainer gamesData={anticipatedGames} />
+      <AnticipatedGameContainer gamesData={topGames[1].result} />
 
       {/* Most Popular Video Games */}
 
       <div className="mt-5">
         <GameCarouselHeader header="New Games" link="" />
-        <GameCardCarousel lg_basis="lg:basis-1/6" gamesData={newGames} />
+        <GameCardCarousel
+          lg_basis="lg:basis-1/6"
+          gamesData={topGames[0].result}
+        />
         <GameCarouselHeader
           header="IGDB Top Active Players"
           link="/top-100/most-active"
